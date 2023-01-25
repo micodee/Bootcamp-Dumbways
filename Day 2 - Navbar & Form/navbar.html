@@ -11,27 +11,31 @@
       text-decoration: none;
       margin: 0;
       padding: 0;
+      box-sizing: border-box;
      }
      a {
       color: black;
      }
-     .container {
+     .flex {
       display: flex;
-      justify-content: space-between;
       align-items: center;
+     }
+     nav {
+      justify-content: space-between;
       background: #ddd;
      }
+
     </style>
   </head>
   <body>
-    <div class="container">
+    <nav class="flex">
       <div>
-        <ul>
-          <li>Home</li>
-          <li>Blog</li>
+        <ul class="flex">
+          <li><a href="">Home</a></li>
+          <li><a href="">Blog</a></li>
         </ul>
       </div>
       <a href="contact-me.html">Contact Me</a>
-    </div>
+    </nav>
   </body>
 </html>
