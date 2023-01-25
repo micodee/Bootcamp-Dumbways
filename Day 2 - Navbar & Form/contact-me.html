@@ -6,15 +6,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Day 2 - Navbar & Form</title>
     <style>
-     * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-     }
-     form {
-      width: 300px;
-      margin: 6rem auto;
-     }
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body {
+       font-family: sans-serif;
+      }
+      form {
+        width: 400px;
+        margin: 6rem auto;
+      }
       input,
       select,
       textarea {
@@ -24,6 +27,16 @@
         border: 1px solid #c4c4c4;
         margin: 5px 0 10px;
         resize: none;
+        background: #eee;
+      }
+      button {
+        border: none;
+        background: orangered;
+        padding: 8px 30px;
+        border-radius: 10px;
+        font-size: 16px;
+        color: white;
+        cursor: pointer;
       }
     </style>
   </head>
@@ -45,17 +58,17 @@
       </div>
 
       <div>
-       <label for="subject">Subject</label>
-       <select id="subject">
-         <option value="">Frontend</option>
-         <option value="">Backend</option>
-         <option value="">Fullstack</option>
-       </select>
+        <label for="subject">Subject</label>
+        <select id="subject">
+          <option value="">Frontend</option>
+          <option value="">Backend</option>
+          <option value="">Fullstack</option>
+        </select>
       </div>
 
-      <div>    
-       <label for="message">Your Message</label>
-       <textarea id="message" cols="30" rows="7"></textarea>
+      <div>
+        <label for="message">Your Message</label>
+        <textarea id="message" cols="30" rows="7"></textarea>
       </div>
 
       <button type="submit">Submit</button>
