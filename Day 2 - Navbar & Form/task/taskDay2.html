@@ -64,6 +64,37 @@
    }
    .home .description {
     flex: 70%;
+    margin: 0 2rem;
+   }
+   .home .description h1 {
+    margin-bottom: 1rem;
+   }
+   .home .description p {
+    margin-bottom: 2rem;
+   }
+   .home .sosmed {
+    gap: 1rem;
+    margin-top: 3rem;
+   }
+   .home .sosmed a {
+    font-size: 2rem;
+   }
+   .home .image {
+    text-align: center;
+    line-height: 1.5rem;
+    background: #ddd;
+    border-radius: 0 0 8px 8px;
+    padding: 0 0 .75rem;
+   }
+   .home .image p {
+    font-size: 1.2rem;
+   }
+   .home .image h1 {
+    font-size: 1.2rem;
+   }
+   .home img {
+    border-radius: 8px 8px 0 0;
+    margin-bottom: .65rem;
    }
   </style>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
@@ -84,22 +115,24 @@
   </header>
   <main>
    <section class="container flex home" style="height:100vh; justify-content:center; margin: auto; padding: 4rem auto;">
-    <div style="background:#ccc; width:100%; margin-top: 2.5rem;">
+    <div style="background:#ccc; width:100%; margin-top: 3rem; border-radius: 8px;">
      <div class="content flex">
       <div class="description">
        <h1>Hi Welcome to my hut</h1>
-       <p style="text-align: justify;">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quae sed suscipit iusto pariatur ab natus voluptates veniam molestias? Nesciunt excepturi fuga nostrum optio rerum officia quia delectus omnis placeat consectetur, reiciendis maiores aperiam necessitatibus, amet eveniet sunt veniam provident illo impedit ratione saepe quam ipsa quis neque. Harum, quaerat placeat.</p>
+       <p style="text-align: justify;">Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis, qui tenetur modi fugit quo aliquid, itaque et, mollitia perferendis tempora enim ipsum aliquam magni nemo ipsam ullam. Sapiente ipsum veniam voluptatum eaque quas, ipsam iste illo, eligendi quisquam modi possimus! Hic corrupti ipsum, alias vel perferendis aperiam! Molestias ad cum maiores dolorem, omnis eligendi illo modi quisquam magnam et autem est facilis maxime quasi tenetur perferendis praesentium? Autem asperiores quidem nostrum ab nesciunt doloribus numquam fugit beatae cumque excepturi, nulla, modi cum eum sequi dolorem mollitia doloremque. Aperiam placeat ullam dolor accusantium cum, nesciunt, veniam, iste ea sit repudiandae adipisci.</p>
        <button>contact</button>
-       <a href="#">download CV</a>
-       <ul>
+       <a href="#">download CV<i class="fa-solid fa-download"></i></a>
+       <ul class="sosmed flex">
         <li><a href="#"><i class="fa-brands fa-linkedin"></i></a></li>
-        <li><a href="#"><i class="fa-brands fa-facebook"></i></a></li>
         <li><a href="#"><i class="fa-brands fa-instagram"></i></a></li>
+        <li><a href="#"><i class="fa-brands fa-facebook"></i></a></li>
         <li><a href="#"><i class="fa-brands fa-github"></i></a></li>
        </ul>
       </div>
       <div class="image" style="flex: 30%">
        <img src="./img/profile.jpg" width="100%" alt="profile" loading="lazy">
+       <h1>Tommy Marcelino Hidayat</h1>
+       <span>Junior Fullstack Developer</span>
       </div>
      </div>
     </div>
