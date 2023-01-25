@@ -1,69 +1,88 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Navbar</title>
-    <style>
-      * {
-        list-style: none;
-        text-decoration: none;
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-      }
-      body {
-        font-family: sans-serif;
-      }
-      a {
-        color: black;
-      }
-      .flex {
-        display: flex;
-        align-items: center;
-      }
-      nav {
-        background: #ddd;
-      }
-      .nav {
-        justify-content: space-between;
-        max-width: 1080px;
-        padding: 1rem;
-        margin: 0 auto;
-      }
-      .nav img {
-        margin-right: 1.5rem;
-      }
-      .nav ul {
-        gap: 1rem;
-      }
-      .nav li:hover a {
-        color: orangered;
-      }
-      .nav .active a {
-        color: orangered;
-      }
-      .contact {
-        background: orangered;
-        padding: .5rem .8rem;
-        border-radius: 10px;
-        color: white;
-      }
-    </style>
-  </head>
-  <body>
-    <nav>
-      <div class="nav flex">
-        <div>
-          <ul class="flex">
-            <img src="../assets/img/img1.png" width="30" alt="" />
-            <li class="active"><a href="">Home</a></li>
-            <li><a href="">Blog</a></li>
-          </ul>
-        </div>
-        <a href="contact-me.html" class="contact">Contact Me</a>
+ <head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Navbar</title>
+  <style>
+   * {
+    list-style: none;
+    text-decoration: none;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+   }
+   body {
+    font-family: sans-serif;
+   }
+   a {
+    color: black;
+   }
+   .flex {
+    display: flex;
+    align-items: center;
+   }
+   .container {
+    max-width: 1080px;
+   }
+   nav {
+    background: #ddd;
+    position: fixed;
+    right: 0;
+    left: 0;
+   }
+   .nav {
+    justify-content: space-between;
+    padding: 1rem;
+    margin: 0 auto;
+   }
+   .nav img {
+    margin-right: 1.5rem;
+   }
+   .nav ul {
+    gap: 1rem;
+   }
+   .nav li:hover a {
+    color: orangered;
+   }
+   .nav .active a {
+    color: orangered;
+   }
+   .contact {
+    background: orangered;
+    padding: 0.5rem 0.8rem;
+    border-radius: 10px;
+    color: white;
+   }
+  </style>
+ </head>
+ <body>
+  <nav class="container">
+   <div class="nav flex">
+    <div>
+     <ul class="flex">
+      <img src="../assets/img/img1.png" width="30" alt="" loading="lazy" />
+      <li class="active"><a href="">Home</a></li>
+      <li><a href="">Blog</a></li>
+     </ul>
+    </div>
+    <a href="contact-me.html" class="contact">Contact Me</a>
+   </div>
+  </nav>
+  <main>
+   <section class="container flex" style="height:100vh; background:#bbb; justify-content:center;">
+    <div id="home" style="background:#ccc; width:100%;">
+     <div class="content flex">
+      <div class="description" style="flex: 70%">
+       desc
       </div>
-    </nav>
-  </body>
+      <div class="image" style="flex: 30%">
+       card
+      </div>
+     </div>
+    </div>
+   </section>
+  </main>
+ </body>
 </html>
