@@ -26,11 +26,14 @@
    .container {
     max-width: 1080px;
    }
+   header {
+     position: fixed;
+     width: 100%;
+     z-index: 100;
+     background: #ddd;
+   }
    nav {
-    background: #ddd;
-    position: fixed;
-    right: 0;
-    left: 0;
+    margin: auto;
    }
    .nav {
     justify-content: space-between;
@@ -55,30 +58,39 @@
     border-radius: 10px;
     color: white;
    }
+
+   .home .content {
+    padding: 2rem;
+    gap: 2rem;
+   }
+   .home .description {
+    flex: 70%;
+   }
   </style>
  </head>
  <body>
+  <header>
   <nav class="container">
    <div class="nav flex">
-    <div>
      <ul class="flex">
       <img src="../assets/img/img1.png" width="30" alt="" loading="lazy" />
       <li class="active"><a href="">Home</a></li>
-      <li><a href="">Blog</a></li>
+      <li><a href="">My Project</a></li>
      </ul>
-    </div>
-    <a href="contact-me.html" class="contact">Contact Me</a>
+     <a href="contact-me.html" class="contact">Contact Me</a>
    </div>
   </nav>
+  </header>
   <main>
-   <section class="container flex" style="height:100vh; background:#bbb; justify-content:center;">
-    <div id="home" style="background:#ccc; width:100%;">
+   <section class="container flex home" style="height:100vh; background:#bbb; justify-content:center; margin: auto; padding: 4rem;">
+    <div style="background:#ccc; width:100%;">
      <div class="content flex">
-      <div class="description" style="flex: 70%">
-       desc
+      <div class="description">
+       <h1>Hi Welcome to my hut</h1>
+       <p style="text-align: justify;">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quae sed suscipit iusto pariatur ab natus voluptates veniam molestias? Nesciunt excepturi fuga nostrum optio rerum officia quia delectus omnis placeat consectetur, reiciendis maiores aperiam necessitatibus, amet eveniet sunt veniam provident illo impedit ratione saepe quam ipsa quis neque. Harum, quaerat placeat.</p>
       </div>
       <div class="image" style="flex: 30%">
-       card
+       <img src="./img/profile.jpg" width="100%" alt="profile" loading="lazy">
       </div>
      </div>
     </div>
