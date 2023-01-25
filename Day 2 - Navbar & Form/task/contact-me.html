@@ -4,22 +4,15 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Day 2 - Navbar & Form</title>
     <style>
-      * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-      }
       body {
-        font-family: sans-serif;
-        padding: 1rem;
         background: #eee;
       }
-      .contact {
+      .form {
         max-width: 400px;
-        margin: 3rem auto;
+        margin: auto;
         position: relative;
+        padding-top: 7rem;
       }
       form {
         font-weight: 600;
@@ -49,16 +42,30 @@
       form div {
         margin-bottom: .6rem;
       }
-      .contact h1 {
+      .form h1 {
         text-align: center;
         text-transform: uppercase;
-        margin: 2rem 0;
         font-weight: 900;
+        margin-bottom: 2rem;
       }
     </style>
+    <title>Day 2 - Navbar & Form</title>
+    <link rel="stylesheet" href="style.css">
   </head>
   <body>
-    <div class="contact">
+    <header>
+      <nav class="container">
+       <div class="nav flex">
+         <ul class="flex">
+          <img src="../assets/img/img1.png" width="30" alt="" loading="lazy" />
+          <li class="active"><a href="./taskDay2.html">Home</a></li>
+          <li><a href="">My Project</a></li>
+         </ul>
+         <a href="contact-me.html" class="contact">Contact Me</a>
+       </div>
+      </nav>
+      </header>
+    <div class="form">
     <h1>get in touch</h1>
     <form action="">
       <div>
