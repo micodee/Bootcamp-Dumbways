@@ -107,9 +107,52 @@
         <textarea id="message" cols="30" rows="7"></textarea>
       </div>
 
-      <button type="submit">Submit</button>
+      <button type="submit" onclick="getData()">Submit</button>
     </form>
   </div>
   <!-- end content form -->
+  <script type="text/javascript" charset="utf-8">
+  // get data arrow function
+   const getData = () => {
+    
+    // data variable
+    let name = document.querySelector("#name")
+    let email = document.querySelector("#email")
+    let phone = document.querySelector("#phone")
+    let subject = document.querySelector("#subjects")
+    let message = document.querySelector("#message")
+    
+    // validate data null
+    if(!name) {
+     alert("nama tidak boleh kosong")
+    }
+    else if(!email) {
+     alert("email tidak boleh kosong")
+    }
+    else if(!phone) {
+     alert("nomor telepon tidak boleh kosong")
+    }
+    else if(!subject) {
+     alert("subject tidak boleh kosong")
+    }
+    else if(!message) {
+     alert("pesan tidak boleh kosong")
+    }
+    
+    // validate format name
+    let validName = /^[a-zA-Z ]*$/    
+    else if (!validName.test(name)) {
+    alert("Nama hanya boleh mengandung huruf dan spasi!");
+    }
+    
+    // to mail
+    else {
+     const toEmail = tommymh21@gmail.com
+     let bodymsg = `Halo nama saya ${name}, saya ingin ${description} tolong hubungin saya ${phone}`
+     window.open(`mailto:${toEmail}?subject=${subject}&body=${bodymsg}`)
+    }
+    
+   }
+  </script>
   </body>
 </html>
