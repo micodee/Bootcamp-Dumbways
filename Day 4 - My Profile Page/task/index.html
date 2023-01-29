@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
  <head>
+  <!-- meta tags -->
   <meta charset="UTF-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" href="./style.css">
+  <!-- css component home -->
   <style>
    .home .content {
     padding: 2rem;
@@ -53,31 +54,43 @@
     cursor: pointer;
    }
   </style>
+  <!-- global css eksternal -->
+  <link rel="stylesheet" href="./assets/css/style.css">
+  <!-- icon font awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
   <title>Home</title>
  </head>
  <body>
+
+  <!-- component navbar -->
   <header>
   <nav class="container">
    <div class="nav flex">
      <ul class="flex">
-      <img src="../assets/img/img1.png" width="30" alt="" loading="lazy" />
-      <li class="active"><a href="">Home</a></li>
-      <li><a href="">My Project</a></li>
+      <img src="./assets/img/logo.png" width="30" alt="" loading="lazy" />
+      <li class="active"><a href="#">Home</a></li>
+      <li><a href="./pages/my-project.html">My Project</a></li>
      </ul>
-     <a href="contact-me.html" class="contact">Contact Me</a>
+     <a href="./pages/contact-me.html" class="contact">Contact Me</a>
    </div>
   </nav>
   </header>
+  <!-- end navbar -->
+
   <main>
+    <!-- component home -->
    <section class="container flex home" style="height:100vh; justify-content:center; margin: auto; padding: 4rem auto;">
     <div style="background:#ddd; width:100%; margin-top: 3rem; border-radius: 8px;">
-     <div class="content flex">
+      <!-- card content -->
+      <div class="content flex">
+        
+      <!-- side description -->
       <div class="description">
        <h1>Hi Welcome to my hut</h1>
        <p style="text-align: justify;">Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis, qui tenetur modi fugit quo aliquid, itaque et, mollitia perferendis tempora enim ipsum aliquam magni nemo ipsam ullam. Sapiente ipsum veniam voluptatum eaque quas, ipsam iste illo, eligendi quisquam modi possimus! Hic corrupti ipsum, alias vel perferendis aperiam! Molestias ad cum maiores dolorem, omnis eligendi illo modi quisquam magnam et autem est facilis maxime quasi tenetur perferendis praesentium? Autem asperiores quidem nostrum ab nesciunt doloribus numquam fugit beatae cumque excepturi, nulla, modi cum eum sequi dolorem mollitia doloremque. Aperiam placeat ullam dolor accusantium cum, nesciunt, veniam, iste ea sit repudiandae adipisci.</p>
        <button>contact</button>
        <a href="#">download CV<i class="fa-solid fa-download"></i></a>
+
        <ul class="sosmed flex">
         <li><a href="#"><i class="fa-brands fa-linkedin"></i></a></li>
         <li><a href="#"><i class="fa-brands fa-instagram"></i></a></li>
@@ -85,14 +98,21 @@
         <li><a href="#"><i class="fa-brands fa-github"></i></a></li>
        </ul>
       </div>
+      <!-- end side description -->
+
+      <!-- side card image -->
       <div class="image" style="flex: 30%">
-       <img src="./img/profile.jpg" width="100%" alt="profile" loading="lazy">
+       <img src="./assets/img/profile.jpg" width="100%" alt="profile" loading="lazy">
        <h1>Tommy Marcelino Hidayat</h1>
        <span>Junior Fullstack Developer</span>
       </div>
+      <!-- end side card image -->
+
      </div>
+     <!-- end card content -->
     </div>
    </section>
+   <!-- end component home -->
   </main>
  </body>
 </html>

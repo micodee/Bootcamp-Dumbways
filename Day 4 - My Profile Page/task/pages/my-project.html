@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
+      .btn_addproject span {
+        height: 0.8px;
+        width: 100%;
+        background: #000;
+        flex: 1 25%;
+        border-radius: 10px;
+      }
+      button {
+        padding: 0.4rem 1rem;
+        border: 1px solid #000;
+        border-radius: 10px;
+        cursor: pointer;
+        background: transparent;
+      }
+      section {
+        padding: 6rem 0;
+      }
+      .add_project {
+        padding: 1rem;
+      }
+      .input input,
+      select,
+      textarea {
+        width: 100%;
+        padding: 0.4rem;
+        border-radius: 7px;
+        border: 1px solid #c4c4c4;
+        margin: 5px 0 10px;
+        resize: none;
+      }
+      .checkbox input {
+       margin: .4rem;
+      }
+      .btn_addproject {
+       margin: 1.5rem 0;
+      }
+
+      /* card project  */
+      .container_project {
+       display: grid;
+       grid-template-columns: repeat(3, 1fr);
+       gap: 1rem;
+      }
+      .card_project {
+       background: #eee;
+       padding: 1rem;
+       flex-direction: column;
+       border-radius: 7px;
+      }
+      .card_project img {
+       object-fit: cover ;
+       width: 100%;
+       height: 200px;
+       border-radius: 7px;
+      }
+      .card_project .title {
+       margin-top: 1rem;
+      }
+    </style>
+    <link rel="stylesheet" href="../assets/css/style.css" />
+    <title>My Project</title>
+  </head>
+  <body>
+    <!-- component navbar -->
+    <header>
+      <nav class="container">
+        <div class="nav flex">
+          <ul class="flex">
+            <img
+              src="../assets/img/logo.png"
+              width="30"
+              alt=""
+              loading="lazy"
+            />
+            <li class=""><a href="../index.html">Home</a></li>
+            <li class="active"><a href="./my-project.html">My Project</a></li>
+          </ul>
+          <a href="contact-me.html" class="contact">Contact Me</a>
+        </div>
+      </nav>
+    </header>
+    <!-- end navbar -->
+
+    <!-- component project -->
+    <section
+      class="flex project"
+      style="
+        height: auto;
+        justify-content: center;
+        flex-direction: column;
+        margin: auto;
+        padding: 4rem auto;
+      "
+    >
+      <div
+        class="add_project"
+        style="background: #ddd; width: 500px; border-radius: 10px"
+      >
+        <form action="">
+          <div class="input">
+            <label for="name">Project Name</label>
+            <input type="text" />
+          </div>
+          <div
+            class="flex input"
+            style="justify-content: space-between; gap: 1rem"
+          >
+            <div style="width: 100%">
+              <label for="sdate">Start Date</label>
+              <input
+                type="text"
+                name="sdate"
+                id="sdate"
+                placeholder=""
+                onfocus="(type='date')"
+                onblur="if(value==''){type='text'}"
+              />
+            </div>
+            <div style="width: 100%">
+              <label for="edate">End Date</label>
+              <input
+                type="text"
+                name="edate"
+                id="edate"
+                placeholder=""
+                onfocus="(type='date')"
+                onblur="if(value==''){type='text'}"
+              />
+            </div>
+          </div>
+          <div>
+            <label for="desc">Description</label>
+            <textarea id="desc" cols="30" rows="7"></textarea>
+          </div>
+          <div>
+            <label for="tech">Technology</label>
+            <div
+              class="checkbox flex"
+              style="justify-content: space-evenly; margin-top: 1rem"
+            >
+              <label for="nodejs">
+                <input type="checkbox" name="node" id="node" />Node Js
+              </label>
+              <label for="react">
+                <input type="checkbox" name="react" id="react" />React Js
+              </label>
+              <label for="express">
+                <input type="checkbox" name="express" id="express" />Express Js
+              </label>
+              <label for="next">
+                <input type="checkbox" name="next" id="next" />Next Js
+              </label>
+            </div>
+          </div>
+
+          <!-- input image -->
+          <div style="margin-top: 1rem">
+            <label for="file">
+              <input type="file" name="file" id="file" accept="image/*" />
+            </label>
+          </div>
+
+          <!-- button add -->
+          <button
+            type="button"
+            id="submit"
+            style="margin-top: 1rem; width: 100%"
+          >
+            Add
+          </button>
+        </form>
+      </div>
+      <div class="btn_addproject flex" style="width: 100%">
+        <span></span>
+        <button>Add Project</button>
+        <span></span>
+      </div>
+      <div
+        class="container"
+        style="
+          background: #ddd;
+          width: 100%;
+          border-radius: 8px;
+          padding: 2rem 3rem 3rem;
+        "
+      >
+        <h2 style="text-align: center;">My Project</h2>
+        <div class="container_project" style="margin-top: 1.5rem;">
+         <div class="card_project flex">
+          <img src="../assets/img/profile.jpg" loading="lazy" alt="project">
+          <div class="title" style="width: 100%;">
+           <h3>Project Name</h3>
+           <span>Durasi</span>
+          </div>
+         </div>
+         <div class="card_project flex">
+          <img src="../assets/img/profile.jpg" loading="lazy" alt="project">
+          <div class="title" style="width: 100%;">
+           <h3>Project Name</h3>
+           <span>Durasi</span>
+          </div>
+         </div>
+        </div>
+      </div>
+    </section>
+  </body>
+</html>
