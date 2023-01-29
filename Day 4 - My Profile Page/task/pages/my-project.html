@@ -36,35 +36,58 @@
         resize: none;
       }
       .checkbox input {
-       margin: .4rem;
+        margin: 0.4rem;
       }
       .btn_addproject {
-       margin: 1.5rem 0;
+        margin: 1.5rem 0;
       }
 
       /* card project  */
       .container_project {
-       display: grid;
-       grid-template-columns: repeat(3, 1fr);
-       gap: 1rem;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1rem;
       }
       .card_project {
-       background: #eee;
-       padding: 1rem;
-       flex-direction: column;
-       border-radius: 7px;
+        background: #eee;
+        padding: 1rem;
+        flex-direction: column;
+        border-radius: 7px;
+        gap: 1rem;
+        cursor: pointer;
       }
       .card_project img {
-       object-fit: cover ;
-       width: 100%;
-       height: 200px;
-       border-radius: 7px;
+        object-fit: cover;
+        width: 100%;
+        height: 150px;
+        border-radius: 7px;
       }
-      .card_project .title {
-       margin-top: 1rem;
+      .card_project .title span {
+        font-size: 0.9rem;
+      }
+      .card_project .content {
+        font-size: 0.85rem;
+      }
+      .card_project .tech {
+        font-size: 2rem;
+      }
+      .card_project .action {
+        margin-top: 0;
+      }
+      .card_project .action a {
+        background: #000;
+        color: white;
+        width: 100%;
+        padding: 0.4rem 1rem;
+        border-radius: 7px;
       }
     </style>
     <link rel="stylesheet" href="../assets/css/style.css" />
+    <!-- icon font awesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
+    />
     <title>My Project</title>
   </head>
   <body>
@@ -106,7 +129,7 @@
         <form action="">
           <div class="input">
             <label for="name">Project Name</label>
-            <input type="text" />
+            <input type="text" id="pname" />
           </div>
           <div
             class="flex input"
@@ -145,17 +168,17 @@
               class="checkbox flex"
               style="justify-content: space-evenly; margin-top: 1rem"
             >
-              <label for="nodejs">
+              <label for="node">
                 <input type="checkbox" name="node" id="node" />Node Js
               </label>
               <label for="react">
                 <input type="checkbox" name="react" id="react" />React Js
               </label>
-              <label for="express">
-                <input type="checkbox" name="express" id="express" />Express Js
+              <label for="javascript">
+                <input type="checkbox" name="javascript" id="javascript" />Javascript
               </label>
-              <label for="next">
-                <input type="checkbox" name="next" id="next" />Next Js
+              <label for="html">
+                <input type="checkbox" name="html" id="html" />HTML 5
               </label>
             </div>
           </div>
@@ -172,6 +195,7 @@
             type="button"
             id="submit"
             style="margin-top: 1rem; width: 100%"
+            onclick="addProject()"
           >
             Add
           </button>
@@ -191,24 +215,202 @@
           padding: 2rem 3rem 3rem;
         "
       >
-        <h2 style="text-align: center;">My Project</h2>
-        <div class="container_project" style="margin-top: 1.5rem;">
-         <div class="card_project flex">
-          <img src="../assets/img/profile.jpg" loading="lazy" alt="project">
-          <div class="title" style="width: 100%;">
-           <h3>Project Name</h3>
-           <span>Durasi</span>
+        <h2 style="text-align: center">My Project</h2>
+        <div class="container_project" style="margin-top: 1.5rem">
+          <div class="card_project flex">
+            <img src="../assets/img/profile.jpg" loading="lazy" alt="project" />
+            <div class="title" style="width: 100%">
+              <h3>Project Name</h3>
+              <span>Durasi</span>
+            </div>
+            <div class="content" style="width: 100%">
+              Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sequi,
+              ea amet labore eaque repellat perferendis, ab quasi commodi nulla
+              sint voluptatem dolorem, laboriosam libero perspiciatis! Rem
+              veritatis amet optio fuga!
+            </div>
+            <div class="tech" style="width: 100%">
+              <i class="fa-brands fa-node"></i>
+              <i class="fa-brands fa-react"></i>
+              <i class="fa-brands fa-js"></i>
+              <i class="fa-brands fa-html5"></i>
+            </div>
+            <div
+              class="action flex"
+              style="
+                width: 100%;
+                justify-content: space-between;
+                gap: 0.6rem;
+                text-align: center;
+              "
+            >
+              <a href="#">edit</a>
+              <a href="#">hapus</a>
+            </div>
           </div>
-         </div>
-         <div class="card_project flex">
-          <img src="../assets/img/profile.jpg" loading="lazy" alt="project">
-          <div class="title" style="width: 100%;">
-           <h3>Project Name</h3>
-           <span>Durasi</span>
+          <div class="card_project flex">
+            <img src="../assets/img/profile.jpg" loading="lazy" alt="project" />
+            <div class="title" style="width: 100%">
+              <h3>Project Name</h3>
+              <span>Durasi</span>
+            </div>
+            <div class="content" style="width: 100%">
+              Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sequi,
+              ea amet labore eaque repellat perferendis, ab quasi commodi nulla
+              sint voluptatem dolorem, laboriosam libero perspiciatis! Rem
+              veritatis amet optio fuga!
+            </div>
+            <div class="tech" style="width: 100%">
+              <i class="fa-brands fa-node"></i>
+              <i class="fa-brands fa-react"></i>
+              <i class="fa-brands fa-js"></i>
+              <i class="fa-brands fa-html5"></i>
+            </div>
+            <div
+              class="action flex"
+              style="
+                width: 100%;
+                justify-content: space-between;
+                gap: 0.6rem;
+                text-align: center;
+              "
+            >
+              <a href="#">edit</a>
+              <a href="#">hapus</a>
+            </div>
           </div>
-         </div>
+          <div class="card_project flex">
+            <img src="../assets/img/profile.jpg" loading="lazy" alt="project" />
+            <div class="title" style="width: 100%">
+              <h3>Project Name</h3>
+              <span>durasi : 7 hari</span>
+            </div>
+            <div class="content" style="width: 100%">
+              Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sequi,
+              ea amet labore eaque repellat perferendis, ab quasi commodi nulla
+              sint voluptatem dolorem, laboriosam libero perspiciatis! Rem
+              veritatis amet optio fuga!
+            </div>
+            <div class="tech" style="width: 100%">
+              <i class="fa-brands fa-node"></i>
+              <i class="fa-brands fa-react"></i>
+              <i class="fa-brands fa-js"></i>
+              <i class="fa-brands fa-html5"></i>
+            </div>
+            <div
+              class="action flex"
+              style="
+                width: 100%;
+                justify-content: space-between;
+                gap: 0.6rem;
+                text-align: center;
+              "
+            >
+              <a href="#">edit</a>
+              <a href="#">hapus</a>
+            </div>
+          </div>
         </div>
       </div>
     </section>
+    <script>
+     // data variable global
+     let project = []
+     let showproject = document.querySelector(".container_project")
+
+     // function add project 
+     const addProject = () => {
+      // data variable scope
+      let card = document.querySelector(".card_project");
+      let pName = document.querySelector("#pname").value
+      let sDate = document.querySelector("#sdate").value
+      let eDate = document.querySelector("#edate").value
+      let desc = document.querySelector("#desc").value
+      let i1 = document.querySelector("#node").checked
+      let i2 = document.querySelector("#react").checked
+      let i3 = document.querySelector("#javascript").checked
+      let i4 = document.querySelector("#html").checked
+      let image = document.querySelector("#file").files
+
+      let icon1 = (i1) ? `<i class="fa-brands fa-node"></i>` : ``;
+      let icon2 = (i2) ? `<i class="fa-brands fa-react"></i>` : ``;
+      let icon3 = (i3) ? `<i class="fa-brands fa-js"></i>` : ``;
+      let icon4 = (i4) ? `<i class="fa-brands fa-html5"></i>` : ``;
+
+      image = URL.createObjectURL(image[0])
+
+      let icon = [icon1, icon2, icon3, icon4]
+      console.log(icon);
+
+      let dataProject = {
+       pName,
+       sDate,
+       eDate,
+       desc,
+       image, 
+       icon
+      }
+
+      project.push(dataProject)
+      console.log(project);
+      showData()
+      let form = document.querySelector("form");
+      form.reset();
+     }
+
+     const showData = () => {
+      showproject.innerHTML = ``
+
+      let i = 0
+      for(let i of project) {
+       showproject.innerHTML += `
+       <div class="card_project flex">
+            <img src="${i.image}" loading="lazy" alt="project" />
+            <div class="title" style="width: 100%">
+              <h3>${i.pName}</h3>
+              <span>durasi : ${duration(i.sDate, i.eDate)}</span>
+            </div>
+            <div class="content" style="width: 100%">
+              ${i.desc}
+            </div>
+            <div class="tech" style="width: 100%">
+             ${i.icon[0]}
+             ${i.icon[1]}
+             ${i.icon[2]}
+             ${i.icon[3]}
+            </div>
+            <div
+              class="action flex"
+              style="
+                width: 100%;
+                justify-content: space-between;
+                gap: 0.6rem;
+                text-align: center;
+              "
+            >
+              <a href="#">edit</a>
+              <a href="#">hapus</a>
+            </div>
+          </div>
+       `
+       i++
+      }
+     }
+
+    // function duration
+    const duration = (sDate, eDate) => {
+    let selisih = new Date(eDate) - new Date(sDate)
+
+    let day = Math.floor(selisih / (1000 * 60 * 60 * 24))
+    let month = Math.floor(selisih / (1000 * 60 * 60 * 24 * 30))
+
+    if (month > 0) {
+        return `${month} Bulan`
+    } 
+    else {
+        return `${day} Hari`
+    }
+}
+    </script>
   </body>
 </html>
