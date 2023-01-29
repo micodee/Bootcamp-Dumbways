@@ -86,7 +86,7 @@
         <div class="form">
           <h1>get in touch</h1>
 
-          <form action="">
+          <form action="../index.html">
             <div
               class="alert flex"
               role="alert"
@@ -192,11 +192,11 @@
           notif.innerHTML = "Message minimal 15 huruf"
         }
         else {
-          // const toEmail = 'tommymh21@gmail.com'
-          // const mailTo = document.createElement("a");
-          // mailTo.href = `mailto:${toEmail}?subject=${subject}&body=Halo nama saya ${name}, saya ingin ${message} tolong hubungin saya ${phone}`;
-          // mailTo.click()
-          notif.innerHTML = "pesan berhasil"
+          const toEmail = 'tommymh21@gmail.com'
+          const mailTo = document.createElement("a");
+          mailTo.href = `mailto:${toEmail}?subject=${subject}&body=Halo nama saya ${name}, saya ingin ${message} tolong hubungin saya ${phone}`;
+          mailTo.click()
+          // notif.innerHTML = "pesan berhasil"
           // const simail = 'tommymh21@gmail.com'
           // const hbody = `Halo nama saya ${name}, saya ingin ${description} tolong hubungin saya ${phone}`
           // const mailto_link = `mailto:${simail}?subject=${subject}&body=${hbody}`;
