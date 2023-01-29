@@ -92,10 +92,10 @@
         height: 0;
         overflow: hidden;
         margin-top: 1.5rem;
-        transition: .3s;
+        transition: 0.3s;
       }
       .form-show {
-       height: 480px !important;
+        height: 480px !important;
       }
     </style>
     <link rel="stylesheet" href="../assets/css/style.css" />
@@ -331,17 +331,21 @@
       let showproject = document.querySelector(".container_project");
 
       // show form
-      let form = document.querySelector(".form-hidden")
-      let btnproject = document.querySelector(".btn_addproject")
+      let form = document.querySelector(".form-hidden");
+      let btnproject = document.querySelector(".btn_addproject");
+      let cards = document.querySelector(".card_project");
 
-       btnproject.onclick = () => {
-        form.classList.toggle("form-show")
-       }
+      btnproject.onclick = () => {
+        form.classList.toggle("form-show");
+      };
+
+      cards.onclick = () => {
+        window.location.href = "./contact-me.html";
+      };
 
       // function add project
       const addProject = () => {
         // data variable scope
-        let card = document.querySelector(".card_project");
         let pName = document.querySelector("#pname").value;
         let sDate = document.querySelector("#sdate").value;
         let eDate = document.querySelector("#edate").value;
