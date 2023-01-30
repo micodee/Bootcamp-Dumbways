@@ -124,9 +124,9 @@
               <label for="subject">Subject</label>
               <select id="subject">
                 <option selected>-</option>
-                <option value="">Frontend</option>
-                <option value="">Backend</option>
-                <option value="">Fullstack</option>
+                <option value="Hiring">Hiring</option>
+                <option value="Discussion">Discussion</option>
+                <option value="Collaboration">Collaboration</option>
               </select>
             </div>
 
@@ -194,7 +194,7 @@
         else {
           const toEmail = 'tommymh21@gmail.com'
           const mailTo = document.createElement("a");
-          mailTo.href = `mailto:${toEmail}?subject=${subject}&body=Halo nama saya ${name}, saya ingin ${message} tolong hubungin saya ${phone}`;
+          mailTo.href = `mailto:${toEmail}?subject=${subject}&body=Halo nama saya ${name}, saya ingin ${message} tolong hubungin saya ${phone} atau email saya ${email}`;
           mailTo.click()
           // notif.innerHTML = "pesan berhasil"
           // const simail = 'tommymh21@gmail.com'
