@@ -56,6 +56,9 @@
         cursor: pointer;
         justify-content: space-between;
       }
+      .card_project:hover {
+        box-shadow: 0 0 20px -1px #444;
+      }
       .card_project img {
         object-fit: cover;
         width: 100%;
@@ -230,7 +233,7 @@
       </div>
       <div class="btn_addproject flex" style="width: 100%">
         <span></span>
-        <button>Add Project</button>
+        <button>New Project</button>
         <span></span>
       </div>
       <div
@@ -340,8 +343,8 @@
       };
 
       cards.onclick = () => {
-        window.location.href = "./contact-me.html";
-      };
+        window.location.href = "./detail-project.html";
+      }
 
       // function add project
       const addProject = () => {
