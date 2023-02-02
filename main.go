@@ -127,8 +127,8 @@ func AddProject (w http.ResponseWriter, req *http.Request) {
 		log.Fatal(err)		
 	}
 
-	fmt.Println("title : " + req.PostForm.Get("title"))
-	fmt.Println("content : " + req.PostForm.Get("content"))
+	fmt.Println("Project Name : " + req.PostForm.Get("pname"))
+	fmt.Println("Description : " + req.PostForm.Get("desc"))
 
 	http.Redirect(w, req, "/", http.StatusMovedPermanently)
 }
