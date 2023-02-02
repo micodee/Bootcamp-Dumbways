@@ -8,15 +8,15 @@ import (
 )
 
 func main() {
-	route := mux.NewRouter()
+	// menyiapkan routingan
+	router := mux.NewRouter()
 
-	route.HandleFunc("/", func (w http.ResponseWriter, r *http.Request)  {
-		w.Header().Set("content.Type", "application/json")
+	router.HandleFunc("/", func (w http.ResponseWriter, req *http.Request)  {
+		w.Header().Set("Content-type", "application/json")
 		w.WriteHeader(http.StatusOK)
 		w.Write([]byte("hello world"))
 	}).Methods("GET")
 
-	port := "5000"
-	fmt.Println("server running on port", port)
-	http.ListenAndServe("localhost:"+port, route)
+	fmt.Println("Server Running in port 5000")
+	http.ListenAndServe("localhost:5000", router)
 }
