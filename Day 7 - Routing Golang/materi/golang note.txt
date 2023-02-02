@@ -1,0 +1,3 @@
+init = go mod init personal
+framework = go get -u github.com/gorilla/mux
+buat file = main.go
