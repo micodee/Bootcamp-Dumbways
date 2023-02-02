@@ -39,9 +39,12 @@
       .btn-black:hover {
         background: orangered !important;
       }
+      .contact a {
+        color: white !important;
+      }
     </style>
     <!-- global css eksternal -->
-    <link rel="stylesheet" href="./assets/css/style.css" />
+    <link rel="stylesheet" href="/public/css/style.css" />
     <!-- icon font awesome -->
     <link
       rel="stylesheet"
@@ -54,14 +57,14 @@
       integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD"
       crossorigin="anonymous"
     />
-    <title>Home</title>
+    <title>{{.title}}</title>
   </head>
   <body class="bg-bodyset">
     <!-- component navbar -->
     <nav class="shadow navbar navbar-expand-lg bg-nav fixed-top">
       <div class="container p-0">
-        <a class="navbar-brand me-5" href="./index.html"
-          ><img src="./assets/img/logo.png" alt=""
+        <a class="navbar-brand me-5" href="/"
+          ><img src="/public/img/logo.png" alt=""
         /></a>
 
         <button
@@ -82,20 +85,29 @@
               <a
                 class="nav-link fw-bold active"
                 aria-current="page"
-                href="./index.html"
+                href="/"
                 >Home</a
               >
             </li>
+
+            {{ if .isLogin }}
             <li class="nav-item">
-              <a class="nav-link fw-semibold" href="./my-project.html"
+              <a class="nav-link fw-semibold" href="/project"
                 >Add Project</a
               >
             </li>
+            {{ else }}
+            <li class="nav-item">
+              <a class="nav-link fw-semibold" href="/project"
+                >Login</a
+              >
+            </li>
+            {{ end }}
           </ul>
 
-          <button class="btn btn-black fw-semibold" type="submit">
-            Contact Me
-          </button>
+            <div class="btn-black fw-semibold contact">
+              <a href="/contact">Contact Me</a>
+            </div>
         </div>
       </div>
     </nav>
@@ -123,7 +135,7 @@
 
           <div class="d-flex align-items-center mt-5">
             <button type="button" class="btn btn-black me-4 rounded-5 ps-4 pe-4">contact</button>
-            <a href="./assets/img/cv.pdf" class="me-2 fw-semibold">download CV</a>
+            <a href="/public/img/cv.pdf" target="_blank" class="me-2 fw-semibold">download CV</a>
             <i class="fa-solid fa-download"></i>
           </div>
 
@@ -136,7 +148,7 @@
           
         </div>
         <div class="col-7 col-md-3 card p-0 mt-5 mt-md-0" style="width: clamp;">
-          <img src="./assets/img/profile.jpg" class="card-img-top" alt="profile">
+          <img src="/public/img/profile.jpg" class="card-img-top" alt="profile">
           <div class="card-body text-center">
             <h5 class="card-title fw-bold m-0">Tommy Marcelino Hidayat</h5>
             <p class="card-text">Junior Fullstack Developer</p>
@@ -154,7 +166,7 @@
         
         <div class="col-6 col-md-4 p-3 d-flex justify-content-center align-content-center">
           <div class="card p-3" style="width: 100%;">
-            <img src="./assets/img/profile.jpg" height="250" class="card-img-top" alt="profile" style="object-fit: cover;">
+            <img src="/public/img/profile.jpg" height="250" class="card-img-top" alt="profile" style="object-fit: cover;">
             <div class="card-body">
               <h5 class="card-title fw-bold m-0">Tommy Marcelino Hidayat</h5>
               <p class="card-text">Junior Fullstack Developer</p>
@@ -163,7 +175,7 @@
         </div>
         <div class="col-6 col-md-4 p-3 d-flex justify-content-center align-content-center">
           <div class="card p-3" style="width: 100%;">
-            <img src="./assets/img/profile.jpg" height="250" class="card-img-top" alt="profile" style="object-fit: cover;">
+            <img src="/public/img/profile.jpg" height="250" class="card-img-top" alt="profile" style="object-fit: cover;">
             <div class="card-body">
               <h5 class="card-title fw-bold m-0">Tommy Marcelino Hidayat</h5>
               <p class="card-text">Junior Fullstack Developer</p>
@@ -172,7 +184,7 @@
         </div>
         <div class="col-6 col-md-4 p-3 d-flex justify-content-center align-content-center">
           <div class="card p-3" style="width: 100%;">
-            <img src="./assets/img/profile.jpg" height="250" class="card-img-top" alt="profile" style="object-fit: cover;">
+            <img src="/public/img/profile.jpg" height="250" class="card-img-top" alt="profile" style="object-fit: cover;">
             <div class="card-body">
               <h5 class="card-title fw-bold m-0">Tommy Marcelino Hidayat</h5>
               <p class="card-text">Junior Fullstack Developer</p>
@@ -181,7 +193,7 @@
         </div>
         <div class="col-6 col-md-4 p-3 d-flex justify-content-center align-content-center">
           <div class="card p-3" style="width: 100%;">
-            <img src="./assets/img/profile.jpg" height="250" class="card-img-top" alt="profile" style="object-fit: cover;">
+            <img src="/public/img/profile.jpg" height="250" class="card-img-top" alt="profile" style="object-fit: cover;">
             <div class="card-body">
               <h5 class="card-title fw-bold m-0">Tommy Marcelino Hidayat</h5>
               <p class="card-text">Junior Fullstack Developer</p>

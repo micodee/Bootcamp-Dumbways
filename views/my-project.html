@@ -101,7 +101,7 @@
         height: 480px !important;
       }
     </style>
-    <link rel="stylesheet" href="./assets/css/style.css" />
+    <link rel="stylesheet" href="/public/css/style.css" />
     <!-- icon font awesome -->
     <link
       rel="stylesheet"
@@ -116,7 +116,7 @@
         <div class="nav flex">
           <ul class="flex">
             <img
-              src="./assets/img/logo.png"
+              src="/public/img/logo.png"
               width="30"
               alt=""
               loading="lazy"
@@ -151,10 +151,10 @@
             margin: auto;
           "
         >
-          <form action="">
+          <form action="/addProject">
             <div class="input">
               <label for="name">Project Name</label>
-              <input type="text" id="pname" />
+              <input type="text" id="pname" name="title" />
             </div>
             <div
               class="flex input"
@@ -185,7 +185,7 @@
             </div>
             <div>
               <label for="desc">Description</label>
-              <textarea id="desc" cols="30" rows="7"></textarea>
+              <textarea id="desc" cols="30" rows="7" name="content"></textarea>
             </div>
             <div>
               <label for="tech">Technology</label>
@@ -224,7 +224,6 @@
               type="button"
               id="submit"
               style="margin-top: 1rem; width: 100%"
-              onclick="addProject()"
             >
               Add
             </button>
@@ -251,7 +250,7 @@
           <div class="card_project flex">
             <div style="width: 100%">
               <img
-                src="./assets/img/portfolio1.gif"
+                src="/public/img/portfolio1.gif"
                 loading="lazy"
                 alt="project"
               />
@@ -264,7 +263,7 @@
                 ducimus distinctio optio nesciunt nihil dolore voluptatibus
                 exercitationem magnam, ipsum maiores praesentium accusantium
                 dolorum saepe, voluptas, suscipit iste maxime consequuntur
-                laboriosam.
+                laboriosam. <a href="/detail/123" class="color: red">Read More</a>
               </div>
             </div>
             <div style="width: 100%">
@@ -293,7 +292,7 @@
           <div class="card_project flex">
             <div style="width: 100%">
               <img
-                src="./assets/img/portfolio3.gif"
+                src="/public/img/portfolio3.gif"
                 loading="lazy"
                 alt="project"
               />
@@ -303,6 +302,7 @@
               </div>
               <div class="content" style="width: 100%">
                 Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sequi,
+                <a href="/detail/micode" class="color: red">Read More</a>
               </div>
             </div>
             <div style="width: 100%">
