@@ -5,6 +5,7 @@ import (
 	"html/template"
 	"log"
 	"net/http"
+	"projek/controllers/home"
 	"strconv"
 
 	"github.com/gorilla/mux"
@@ -64,11 +65,13 @@ func main() {
 	router.PathPrefix("/public").Handler(http.StripPrefix("/public", http.FileServer(http.Dir("./public"))))
 
 	// routing
-	router.HandleFunc("/", Home).Methods("GET")
+	// router.HandleFunc("/", Home).Methods("GET")
 	router.HandleFunc("/project", Project).Methods("GET")
 	router.HandleFunc("/detail/{id}", ProjectDetail).Methods("GET")
-	router.HandleFunc("/addProject", AddProject).Methods("POST")
+	router.HandleFunc("/projectAdd", AddProject).Methods("POST")
 	router.HandleFunc("/contact", Contact).Methods("GET")
+	
+	router.HandleFunc("/", home.Home).Methods("GET")
 
 	fmt.Println("Server Running on port 5000")
 	http.ListenAndServe("localhost:5000", router)
