@@ -6,3 +6,5 @@ running = go run .
 membuat variable
   var project
   project :=
+
+shortcut func ketikan hand

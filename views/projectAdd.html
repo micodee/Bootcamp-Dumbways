@@ -19,7 +19,7 @@
       integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD"
       crossorigin="anonymous"
     />
-    <title>Add Project</title>
+    <title>{{ .title }}</title>
   </head>
   <body class="bg-bodyset">
     <!-- component navbar -->
@@ -70,7 +70,7 @@
     <div class="d-flex justify-content-center flex-column align-items-center mt-5 pb-5 ps-4 pe-4">
       <h2 class="text-center fw-bolder mb-5 mt-5 text-uppercase">add my project</h2>
       <div class="container col-xl-3 col-12 row p-0">
-        <form action="./projectAdd" method="post">
+        <form action="./add" method="post">
           <div class="mb-3">
             <label for="pname" class="fw-bold">Project Name</label>
             <input type="text" class="form-control" name="pname" id="pname">
