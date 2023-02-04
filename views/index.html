@@ -136,16 +136,15 @@
         
         {{ range $index, $data := .Projects }}
         <div class="col-6 col-md-4 p-lg-3 p-1 d-flex justify-content-center align-content-center">
-          <div class="card p-3" style="width: 100%;">
-            <img src="./public/img/profile.jpg" height="250" class="card-img-top" alt="profile" style="object-fit: cover;">
-            <div class="d-flex justify-content-between flex-column">
-              <div class="card-body ps-0 pe-1 pb-0 card-project">
+          <div class="card p-3 d-flex justify-content-between" style="width: 100%;">
+            <div class="card-body p-0 card-project">
+                <img src="./public/img/profile.jpg" height="250" class="card-img-top mb-3" alt="profile" style="object-fit: cover;">
                 <a href="./detail/{{ $index }}" class="card-title fw-bold m-0 fs-4">{{ $data.Title }}</a>
                 <p class="card-text bg-subtitle">{{ $data.Durasi }}</p>
                 <p class="fw-semibold lh-2">{{ $data.Content }}</p>
               </div>
               <div>
-                <div class="tech d-flex justify-content-start align-items-center gap-4 mt-2">
+                <div class="tech d-flex justify-content-start align-items-center gap-lg-4 gap-2 mt-2 flex-wrap">
                   <h2><i class="fa-brands fa-node"></i></h2>
                   <h2><i class="fa-brands fa-react"></i></h2>
                   <h2><i class="fa-brands fa-js"></i></h2>
@@ -156,7 +155,6 @@
                   <a href="/delete-project/{{$index}}" class="btn-black text-center rounded-2 fw-semibold p-1" style="width: 100%;">hapus</a>
                 </div>
               </div>
-            </div>
           </div>
         </div>
         {{ end }}
