@@ -84,6 +84,20 @@ func Add(w http.ResponseWriter, r *http.Request) {
 	http.Redirect(w, r, "/", http.StatusMovedPermanently)
 }
 
+
+
+func Delete(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Content-type", "text/html; charset=utf-8")
+	id, _ := strconv.Atoi(mux.Vars(r)["id"])
+	
+	project = append(project[:id], project[id+1:]...)
+
+	fmt.Println(id)
+	http.Redirect(w, r, "/", http.StatusMovedPermanently)
+}
+
+
+
 func Detail(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-type", "text/html; charset-utf-8")
 

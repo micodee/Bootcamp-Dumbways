@@ -25,6 +25,7 @@ func main() {
 
 	router.HandleFunc("/detail/{id}", home.Detail).Methods("GET")
 	router.HandleFunc("/add", home.Add).Methods("POST")
+	router.HandleFunc("/delete/{id}", home.Delete).Methods("GET")
 	
 
 	fmt.Println("Server Running on port 5000")
