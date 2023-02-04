@@ -2,3 +2,7 @@ init = go mod init personal
 framework = go get -u github.com/gorilla/mux
 buat file = main.go
 running = go run .
+
+membuat variable
+  var project
+  project :=

@@ -10,8 +10,8 @@
       .bg-subtitle {
         color: #898585;
       }
-      .contact a {
-        color: white !important;
+      .card-project:hover a {
+        color: orangered !important;
       }
     </style>
     <!-- global css eksternal -->
@@ -28,7 +28,7 @@
       integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD"
       crossorigin="anonymous"
     />
-    <title>{{.title}}</title>
+    <title>{{.title.title}}</title>
   </head>
   <body class="bg-bodyset">
     <!-- component navbar -->
@@ -60,7 +60,7 @@
                 >Home</a
               >
             </li>
-            {{ if .isLogin }}
+            {{ if .Data.isLogin }}
             <li class="nav-item">
               <a class="nav-link fw-semibold" href="./project"
                 >Add Project</a
@@ -86,7 +86,7 @@
     <!-- profile  -->
     <div class="d-flex justify-content-center align-items-center mt-5 pb-5">
       <div class="shadow container me-4 ms-4 bg-layout rounded-2 p-lg-5 p-2 pt-4 row d-flex justify-content-center align-items-center mt-5 pb-5">
-
+        
         <div class="col-md-9 pe-lg-5">
           <h3 class="fw-bold">Hi Welcome to my hut</h3>
           <p style="text-align: justify;">
@@ -134,14 +134,15 @@
       <h2 class="text-center fw-bolder mb-5 mt-5">My Project</h2>
       <div class="container row p-0 pe-2 ps-2">
         
+        {{ range $index, $data := .Projects }}
         <div class="col-6 col-md-4 p-lg-3 p-1 d-flex justify-content-center align-content-center">
           <div class="card p-3" style="width: 100%;">
             <img src="./public/img/profile.jpg" height="250" class="card-img-top" alt="profile" style="object-fit: cover;">
             <div class="d-flex justify-content-between flex-column">
-              <div class="card-body ps-0 pe-1 pb-0">
-                <h5 class="card-title fw-bold m-0">Dumbways Mobile App - 2021</h5>
-                <p class="card-text bg-subtitle">durasi : 3 bulan</p>
-                <p class="fw-semibold lh-2">App that used for dumbways student, it was deployed and can downloaded on playstore. Happy download</p>
+              <div class="card-body ps-0 pe-1 pb-0 card-project">
+                <a href="./detail/{{ $index }}" class="card-title fw-bold m-0 fs-4">{{ $data.Title }}</a>
+                <p class="card-text bg-subtitle">{{ $data.Durasi }}</p>
+                <p class="fw-semibold lh-2">{{ $data.Content }}</p>
               </div>
               <div>
                 <div class="tech d-flex justify-content-start align-items-center gap-4 mt-2">
@@ -151,109 +152,14 @@
                   <h2><i class="fa-brands fa-html5"></i></h2>
                 </div>
                 <div class="d-flex justify-content-evenly mt-4 gap-1">
-                  <a href="#" class="btn-black text-center rounded-2 fw-semibold p-1" style="width: 100%;">edit</a>
-                  <a href="#" class="btn-black text-center rounded-2 fw-semibold p-1" style="width: 100%;">hapus</a>
+                  <a href="/project-detail/{{$index}}" class="btn-black text-center rounded-2 fw-semibold p-1" style="width: 100%;">edit</a>
+                  <a href="/delete-project/{{$index}}" class="btn-black text-center rounded-2 fw-semibold p-1" style="width: 100%;">hapus</a>
                 </div>
               </div>
             </div>
           </div>
         </div>
-        <div class="col-6 col-md-4 p-lg-3 p-1 d-flex justify-content-center align-content-center">
-          <div class="card p-3" style="width: 100%;">
-            <img src="./public/img/profile.jpg" height="250" class="card-img-top" alt="profile" style="object-fit: cover;">
-            <div class="d-flex justify-content-between flex-column">
-              <div class="card-body ps-0 pe-1 pb-0">
-                <h5 class="card-title fw-bold m-0">Dumbways Mobile App - 2021</h5>
-                <p class="card-text bg-subtitle">durasi : 3 bulan</p>
-                <p class="fw-semibold lh-2">App that used for dumbways student, it was deployed and can downloaded on playstore. Happy download</p>
-              </div>
-              <div>
-                <div class="tech d-flex justify-content-start align-items-center gap-4 mt-2">
-                  <h2><i class="fa-brands fa-node"></i></h2>
-                  <h2><i class="fa-brands fa-react"></i></h2>
-                  <h2><i class="fa-brands fa-js"></i></h2>
-                  <h2><i class="fa-brands fa-html5"></i></h2>
-                </div>
-                <div class="d-flex justify-content-evenly mt-4 gap-1">
-                  <a href="#" class="btn-black text-center rounded-2 fw-semibold p-1" style="width: 100%;">edit</a>
-                  <a href="#" class="btn-black text-center rounded-2 fw-semibold p-1" style="width: 100%;">hapus</a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-6 col-md-4 p-lg-3 p-1 d-flex justify-content-center align-content-center">
-          <div class="card p-3" style="width: 100%;">
-            <img src="./public/img/profile.jpg" height="250" class="card-img-top" alt="profile" style="object-fit: cover;">
-            <div class="d-flex justify-content-between flex-column">
-              <div class="card-body ps-0 pe-1 pb-0">
-                <h5 class="card-title fw-bold m-0">Dumbways Mobile App - 2021</h5>
-                <p class="card-text bg-subtitle">durasi : 3 bulan</p>
-                <p class="fw-semibold lh-2">App that used for dumbways student, it was deployed and can downloaded on playstore. Happy download</p>
-              </div>
-              <div>
-                <div class="tech d-flex justify-content-start align-items-center gap-4 mt-2">
-                  <h2><i class="fa-brands fa-node"></i></h2>
-                  <h2><i class="fa-brands fa-react"></i></h2>
-                  <h2><i class="fa-brands fa-js"></i></h2>
-                  <h2><i class="fa-brands fa-html5"></i></h2>
-                </div>
-                <div class="d-flex justify-content-evenly mt-4 gap-1">
-                  <a href="#" class="btn-black text-center rounded-2 fw-semibold p-1" style="width: 100%;">edit</a>
-                  <a href="#" class="btn-black text-center rounded-2 fw-semibold p-1" style="width: 100%;">hapus</a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-6 col-md-4 p-lg-3 p-1 d-flex justify-content-center align-content-center">
-          <div class="card p-3" style="width: 100%;">
-            <img src="./public/img/profile.jpg" height="250" class="card-img-top" alt="profile" style="object-fit: cover;">
-            <div class="d-flex justify-content-between flex-column">
-              <div class="card-body ps-0 pe-1 pb-0">
-                <h5 class="card-title fw-bold m-0">Dumbways Mobile App - 2021</h5>
-                <p class="card-text bg-subtitle">durasi : 3 bulan</p>
-                <p class="fw-semibold lh-2">App that used for dumbways student, it was deployed and can downloaded on playstore. Happy download</p>
-              </div>
-              <div>
-                <div class="tech d-flex justify-content-start align-items-center gap-4 mt-2">
-                  <h2><i class="fa-brands fa-node"></i></h2>
-                  <h2><i class="fa-brands fa-react"></i></h2>
-                  <h2><i class="fa-brands fa-js"></i></h2>
-                  <h2><i class="fa-brands fa-html5"></i></h2>
-                </div>
-                <div class="d-flex justify-content-evenly mt-4 gap-1">
-                  <a href="#" class="btn-black text-center rounded-2 fw-semibold p-1" style="width: 100%;">edit</a>
-                  <a href="#" class="btn-black text-center rounded-2 fw-semibold p-1" style="width: 100%;">hapus</a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-6 col-md-4 p-lg-3 p-1 d-flex justify-content-center align-content-center">
-          <div class="card p-3" style="width: 100%;">
-            <img src="./public/img/profile.jpg" height="250" class="card-img-top" alt="profile" style="object-fit: cover;">
-            <div class="d-flex justify-content-between flex-column">
-              <div class="card-body ps-0 pe-1 pb-0">
-                <h5 class="card-title fw-bold m-0">Dumbways Mobile App - 2021</h5>
-                <p class="card-text bg-subtitle">durasi : 3 bulan</p>
-                <p class="fw-semibold lh-2">App that used for dumbways student, it was deployed and can downloaded on playstore. Happy download</p>
-              </div>
-              <div>
-                <div class="tech d-flex justify-content-start align-items-center gap-4 mt-2">
-                  <h2><i class="fa-brands fa-node"></i></h2>
-                  <h2><i class="fa-brands fa-react"></i></h2>
-                  <h2><i class="fa-brands fa-js"></i></h2>
-                  <h2><i class="fa-brands fa-html5"></i></h2>
-                </div>
-                <div class="d-flex justify-content-evenly mt-4 gap-1">
-                  <a href="#" class="btn-black text-center rounded-2 fw-semibold p-1" style="width: 100%;">edit</a>
-                  <a href="#" class="btn-black text-center rounded-2 fw-semibold p-1" style="width: 100%;">hapus</a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+        {{ end }}
         
       </div>
     </div>

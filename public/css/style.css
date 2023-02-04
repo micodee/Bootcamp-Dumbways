@@ -30,3 +30,6 @@
       .btn-black:hover {
         background: orangered !important;
       }
+      .contact a {
+        color: white !important;
+      }
