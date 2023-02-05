@@ -75,6 +75,13 @@ func Add(w http.ResponseWriter, r *http.Request) {
 	js := false
 	hateml := false
 
+	layoutFormat := "2006-01-02"
+	sDate, _ := time.Parse(layoutFormat, SD)
+	sDateFinal := sDate.Format("02 January 2006")
+	
+	eDate, _ := time.Parse(layoutFormat, ED)
+	eDateFinal := eDate.Format("02 January 2006")
+
 	// if checked
 	if r.FormValue("nodejs") != "" {
 		node = true
@@ -91,8 +98,8 @@ func Add(w http.ResponseWriter, r *http.Request) {
 
 	var newAdd = entities.Project{
 		Title : title,
-		Sdate: SD,
-		Edate: ED,
+		Sdate: sDateFinal,
+		Edate: eDateFinal,
 		Content: content,
 		Tnode: node,
 		Treact: react,
@@ -144,6 +151,23 @@ func Detail(w http.ResponseWriter, r *http.Request) {
 		panic(err)
 	}
 
+
+	projectDetail := entities.Project{}
+	for i, item := range project {
+		if i == id {
+			projectDetail = entities.Project{
+				Title: item.Title,
+				Content: item.Content,
+				Sdate: item.Sdate,
+				Edate: item.Edate,
+				Treact: item.Treact,
+				Tnode: item.Tnode,
+				Tjs: item.Tjs,
+				Thtml: item.Thtml,
+			}
+		}
+	}
+
 	var data = map[string]interface{}{
 		"title" : "Detail Project",
 		"isLogin" : true,
@@ -151,7 +175,7 @@ func Detail(w http.ResponseWriter, r *http.Request) {
 
 	resp := map[string]interface{}{
 		"Data" : data,
-		"ID" : id,
+		"Projects" : projectDetail,
 	}
 
 	w.WriteHeader(http.StatusOK)
