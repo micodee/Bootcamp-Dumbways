@@ -77,14 +77,14 @@ func Add(w http.ResponseWriter, r *http.Request) {
 	js := false
 	hateml := false
 
-	layoutFormat := "2006-01-02"
-	sDate, _ := time.Parse(layoutFormat, SD)
-	sDateFinal := sDate.Format("02 January 2006")
-	eDate, _ := time.Parse(layoutFormat, ED)
-	eDateFinal := eDate.Format("02 January 2006")
+	formatan := "2006-01-02"
+	sDate, _ := time.Parse(formatan, SD)
+	sDateFormat := sDate.Format("02 January 2006")
+	eDate, _ := time.Parse(formatan, ED)
+	eDateFormat := eDate.Format("02 January 2006")
 
+	
 	durasi := eDate.Sub(sDate)
-
 	// days := int(duration.Hours() / 24)
 	// months := int(days / 30)
 	// years := int(months / 12)
@@ -96,8 +96,6 @@ func Add(w http.ResponseWriter, r *http.Request) {
 	} else {
 		selisih = strconv.FormatFloat(durasi.Hours()/24/30/12, 'f', 0, 64) + " Tahun"
 	}
-
-	fmt.Println(selisih)
 
 	// if checked
 	if r.FormValue("nodejs") != "" {
@@ -115,8 +113,8 @@ func Add(w http.ResponseWriter, r *http.Request) {
 
 	var newAdd = entities.Project{
 		Title : title,
-		Sdate: sDateFinal,
-		Edate: eDateFinal,
+		Sdate: sDateFormat,
+		Edate: eDateFormat,
 		Durasi: selisih,
 		Content: content,
 		Tnode: node,
@@ -127,14 +125,15 @@ func Add(w http.ResponseWriter, r *http.Request) {
 
 	project = append(project, newAdd)
 
-	fmt.Println("Project Name : " + r.PostForm.Get("pname"))
-	fmt.Println("Description : " + r.PostForm.Get("desc"))
-	fmt.Println("Start Date : " + r.PostForm.Get("sdate"))
-	fmt.Println("End Date : " + r.PostForm.Get("edate"))
-	fmt.Println("Node : " + r.PostForm.Get("nodejs"))
-	fmt.Println("React : " + r.PostForm.Get("reactjs"))
-	fmt.Println("Javascript : " + r.PostForm.Get("js"))
-	fmt.Println("HTML : " + r.PostForm.Get("html"))
+	// fmt.Println("Project Name : " + r.PostForm.Get("pname"))
+	// fmt.Println("Description : " + r.PostForm.Get("desc"))
+	// fmt.Println("Start Date : " + r.PostForm.Get("sdate"))
+	// fmt.Println("End Date : " + r.PostForm.Get("edate"))
+	// fmt.Println("Durasi : " + selisih)
+	// fmt.Println("Node : " + r.PostForm.Get("nodejs"))
+	// fmt.Println("React : " + r.PostForm.Get("reactjs"))
+	// fmt.Println("Javascript : " + r.PostForm.Get("js"))
+	// fmt.Println("HTML : " + r.PostForm.Get("html"))
 
 	http.Redirect(w, r, "/", http.StatusMovedPermanently)
 }
@@ -142,6 +141,8 @@ func Add(w http.ResponseWriter, r *http.Request) {
 
 func Edit(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-type", "text/html; charset=utf-8")
+
+
 }
 
 
