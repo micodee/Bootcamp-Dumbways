@@ -1,7 +1,12 @@
 package entities
 
 type Project struct {
-	Title string
-	Durasi string
-	Content string
+	Title    string
+	Sdate    string
+	Edate    string
+	Content  string
+	Tnode				bool
+	Treact   bool
+	Tjs      bool
+	Thtml    bool
 }

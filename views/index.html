@@ -140,19 +140,27 @@
             <div class="card-body p-0 card-project">
                 <img src="./public/img/profile.jpg" height="250" class="card-img-top mb-3" alt="profile" style="object-fit: cover;">
                 <a href="./detail/{{ $index }}" class="card-title fw-bold m-0 fs-4">{{ $data.Title }}</a>
-                <p class="card-text bg-subtitle">{{ $data.Durasi }}</p>
+                <p class="card-text bg-subtitle">{{ $data.Sdate }} - {{ $data.Edate }}</p>
                 <p class="fw-semibold lh-2">{{ $data.Content }}</p>
               </div>
               <div>
                 <div class="tech d-flex justify-content-start align-items-center gap-lg-4 gap-2 mt-2 flex-wrap">
+                  {{if $data.Tnode}}
                   <h2><i class="fa-brands fa-node"></i></h2>
+                  {{ end }}
+                  {{if $data.Treact}}
                   <h2><i class="fa-brands fa-react"></i></h2>
+                  {{ end }}
+                  {{if $data.Tjs}}
                   <h2><i class="fa-brands fa-js"></i></h2>
+                  {{ end }}
+                  {{if $data.Thtml}}
                   <h2><i class="fa-brands fa-html5"></i></h2>
+                  {{ end }}
                 </div>
                 <div class="d-flex justify-content-evenly mt-4 gap-1">
-                  <a href="/project-detail/{{$index}}" class="btn-black text-center rounded-2 fw-semibold p-1" style="width: 100%;">edit</a>
-                  <a href="/delete/{{$index}}" class="btn-black text-center rounded-2 fw-semibold p-1" style="width: 100%;">hapus</a>
+                  <a href="/edit/{{$index}}" class="btn-black text-center rounded-2 fw-semibold p-1" style="width: 100%;">edit</a>
+                  <a href="/delete/{{$index}}" class="btn-black text-center rounded-2 fw-semibold p-1" style="width: 100%;" onclick="return confirm('Yakin mau dihapus?')">hapus</a>
                 </div>
               </div>
           </div>

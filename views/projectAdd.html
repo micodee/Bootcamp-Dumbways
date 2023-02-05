@@ -73,21 +73,21 @@
         <form action="./add" method="post">
           <div class="mb-3">
             <label for="pname" class="fw-bold">Project Name</label>
-            <input type="text" class="form-control" name="pname" id="pname">
+            <input type="text" class="form-control" name="pname" id="pname" autocomplete="off">
           </div>
           <div class="row">
             <div class="mb-3 col-6 pe-1">
               <label for="sdate" class="fw-bold">Start Date</label>
-              <input type="date" class="form-control" id="sdate">
+              <input type="date" class="form-control" id="sdate" name="sdate" min="2010-01-01" max="2030-12-31">
             </div>
             <div class="mb-3 col-6 ps-1">
               <label for="edate" class="fw-bold">End Date</label>
-              <input type="date" class="form-control" id="edate">
+              <input type="date" class="form-control" id="edate" name="edate" min="2010-01-01" max="2030-12-31">
             </div>
           </div>
           <div class="mb-3">
             <label for="desc" class="fw-bold">Description</label>
-            <input type="text" class="form-control" name="desc" id="desc">
+            <textarea class="form-control" name="desc" id="desc" autocomplete="off" style="height: 100px; resize: none;"></textarea>
           </div>
           <div class="mb-3">
             <label for="tech" class="fw-bold">Technology</label>

@@ -18,14 +18,14 @@ func main() {
 	router.PathPrefix("/public").Handler(http.StripPrefix("/public", http.FileServer(http.Dir("./public"))))
 
 	// routing
-	// router.HandleFunc("/", Home).Methods("GET")
 	router.HandleFunc("/", home.Home).Methods("GET")
 	router.HandleFunc("/addProject", addproject.AddProject).Methods("GET")
 	router.HandleFunc("/contact", contact.Contact).Methods("GET")
 
-	router.HandleFunc("/detail/{id}", home.Detail).Methods("GET")
 	router.HandleFunc("/add", home.Add).Methods("POST")
 	router.HandleFunc("/delete/{id}", home.Delete).Methods("GET")
+	// router.HandleFunc("/edit/{id}", home.Edit).Methods("GET", "POST")
+	router.HandleFunc("/detail/{id}", home.Detail).Methods("GET")
 	
 
 	fmt.Println("Server Running on port 5000")
