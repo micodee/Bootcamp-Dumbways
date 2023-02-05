@@ -15,8 +15,9 @@ import (
 var project = []entities.Project{
 	{
 		Title : "Hallo World",
-		Sdate: time.Now().Format("2023-02-05"),
-		Edate: time.Now().Format("2023-02-09"),
+		Sdate: "05 February 2023",
+		Edate: "09 February 2023",
+		Durasi: "4 Hari",
 		Content : "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor provident culpa magni eum ab voluptatum, iste error, aut voluptas officiis odio tempora reprehenderit quos voluptates mollitia explicabo. Dolores, tempore expedita?",
 		Tnode: true,
 		Treact: true,
@@ -25,8 +26,9 @@ var project = []entities.Project{
 	},
 	{
 		Title : "bai bfdsl ksssu ldjkacau",
-		Sdate: time.Now().Format("2023-01-02"),
-		Edate: time.Now().Format("2023-01-06"),
+		Sdate: "16 February 2023",
+		Edate: "23 February 2023",
+		Durasi: "7 Hari",
 		Content : "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor provident culpa magni eum ab voluptatum, iste error, aut voluptas officiis odio tempora reprehenderit quos voluptates mollitia explicabo. Dolores, tempore expedita?",
 		Tnode: true,
 		Treact: true,
@@ -78,9 +80,24 @@ func Add(w http.ResponseWriter, r *http.Request) {
 	layoutFormat := "2006-01-02"
 	sDate, _ := time.Parse(layoutFormat, SD)
 	sDateFinal := sDate.Format("02 January 2006")
-	
 	eDate, _ := time.Parse(layoutFormat, ED)
 	eDateFinal := eDate.Format("02 January 2006")
+
+	durasi := eDate.Sub(sDate)
+
+	// days := int(duration.Hours() / 24)
+	// months := int(days / 30)
+	// years := int(months / 12)
+	var selisih string
+	if durasi.Hours()/24 < 30 {
+		selisih = strconv.FormatFloat(durasi.Hours()/24, 'f', 0, 64) + " Hari"
+	} else if durasi.Hours()/24/30 < 12 {
+		selisih = strconv.FormatFloat(durasi.Hours()/24/30, 'f', 0, 64) + " Bulan"
+	} else {
+		selisih = strconv.FormatFloat(durasi.Hours()/24/30/12, 'f', 0, 64) + " Tahun"
+	}
+
+	fmt.Println(selisih)
 
 	// if checked
 	if r.FormValue("nodejs") != "" {
@@ -100,6 +117,7 @@ func Add(w http.ResponseWriter, r *http.Request) {
 		Title : title,
 		Sdate: sDateFinal,
 		Edate: eDateFinal,
+		Durasi: selisih,
 		Content: content,
 		Tnode: node,
 		Treact: react,
@@ -160,6 +178,7 @@ func Detail(w http.ResponseWriter, r *http.Request) {
 				Content: item.Content,
 				Sdate: item.Sdate,
 				Edate: item.Edate,
+				Durasi: item.Durasi,
 				Treact: item.Treact,
 				Tnode: item.Tnode,
 				Tjs: item.Tjs,
