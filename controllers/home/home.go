@@ -89,8 +89,10 @@ func Add(w http.ResponseWriter, r *http.Request) {
 	// months := int(days / 30)
 	// years := int(months / 12)
 	var selisih string
-	if durasi.Hours()/24 < 30 {
+	if durasi.Hours()/24 < 7 {
 		selisih = strconv.FormatFloat(durasi.Hours()/24, 'f', 0, 64) + " Hari"
+	} else if durasi.Hours()/24/7 < 4 {
+		selisih = strconv.FormatFloat(durasi.Hours()/24/7, 'f', 0, 64) + " Minggu"
 	} else if durasi.Hours()/24/30 < 12 {
 		selisih = strconv.FormatFloat(durasi.Hours()/24/30, 'f', 0, 64) + " Bulan"
 	} else {
