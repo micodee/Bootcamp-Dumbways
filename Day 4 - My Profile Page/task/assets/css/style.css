@@ -8,6 +8,7 @@
 }
 body {
  font-family: sans-serif;
+ background: #e3e7eb;
 }
 a {
  color: black;
@@ -23,7 +24,8 @@ header {
  position: fixed;
  width: 100%;
  z-index: 100;
- background: #ddd;
+ background: #f4f3f3;
+ box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.25);;
 }
 nav {
 margin: auto;
@@ -43,11 +45,15 @@ gap: 1rem;
 color: orangered;
 }
 .nav .active a {
-color: orangered;
+color: black;
+font-weight: bold;
 }
 .contact {
- background: orangered;
+ background: black;
  padding: 0.5rem 0.8rem;
  border-radius: 10px;
  color: white;
+}
+.contact:hover {
+ background: orangered;
 }

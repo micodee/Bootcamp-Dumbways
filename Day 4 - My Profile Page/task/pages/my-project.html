@@ -49,12 +49,13 @@
         gap: 1rem;
       }
       .card_project {
-        background: #eee;
+        background: #fff;
         padding: 1rem;
         flex-direction: column;
         border-radius: 7px;
         cursor: pointer;
         justify-content: space-between;
+        box-shadow: 0px 0px 20px 5px rgba(0, 0, 0, 0.25);
       }
       .card_project:hover {
         box-shadow: 0 0 20px -1px #444;
@@ -88,6 +89,9 @@
         width: 100%;
         padding: 0.4rem 1rem;
         border-radius: 7px;
+      }
+      .card_project .action a:hover {
+        background: orangered;
       }
 
       .form-hidden {
@@ -145,10 +149,11 @@
         <div
           class="add_project"
           style="
-            background: #ddd;
+            background: #fff;
             width: 500px;
             border-radius: 10px;
             margin: auto;
+            box-shadow: 0 0 20px 5px rgba(0, 0, 0, 0.25);;
           "
         >
           <form action="">
@@ -239,7 +244,7 @@
       <div
         class="container"
         style="
-          background: #ddd;
+          background: #f8f8f8;
           width: 100%;
           border-radius: 8px;
           padding: 2rem 3rem 3rem;
@@ -257,7 +262,7 @@
               />
               <div class="title" style="width: 100%">
                 <h3>Multimedia Web</h3>
-                <span>pengerjaan 7 hari</span>
+                <span>Durasi : 7 Hari</span>
               </div>
               <div class="content" style="width: 100%">
                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Placeat
@@ -299,7 +304,7 @@
               />
               <div class="title" style="width: 100%">
                 <h3>3D Modeling Web</h3>
-                <span>pengerjaan 3 hari</span>
+                <span>Durasi : 3 Hari</span>
               </div>
               <div class="content" style="width: 100%">
                 Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sequi,
@@ -399,7 +404,7 @@
             <img src="${i.image}" />
             <div class="title" style="width: 100%">
               <h3>${i.pName}</h3>
-              <span>pengerjaan ${duration(i.sDate, i.eDate)}</span>
+              <span>Durasi : ${duration(i.sDate, i.eDate)}</span>
             </div>
             <div class="content" style="width: 100%">
              ${i.desc}
@@ -431,14 +436,21 @@
         }
       };
 
+      // 1 sec = 1000 milisecond
+
+        // Math.floor membulatkan nilai ke bawah
+        // Math.cell membulatkan nilai ke atas
       // function duration
       const duration = (sDate, eDate) => {
         let selisih = new Date(eDate) - new Date(sDate);
 
         let day = Math.floor(selisih / (1000 * 60 * 60 * 24));
         let month = Math.floor(selisih / (1000 * 60 * 60 * 24 * 30));
+        let year = Math.floor(selisih / (1000 * 60 * 60 * 24 * 30 * 12));
 
-        if (month > 0) {
+        if (year > 0) {
+          return `${year} Tahun`;
+        } else if (month > 0) {
           return `${month} Bulan`;
         } else {
           return `${day} Hari`;
