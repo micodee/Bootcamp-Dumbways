@@ -23,8 +23,9 @@ func main() {
 	router.HandleFunc("/contact", contact.Contact).Methods("GET")
 
 	router.HandleFunc("/add", home.Add).Methods("POST")
+	router.HandleFunc("/update/{id}", home.Update).Methods("GET")
+	router.HandleFunc("/upost/{id}", home.UpdatePost).Methods("POST")
 	router.HandleFunc("/delete/{id}", home.Delete).Methods("GET")
-	router.HandleFunc("/edit/{id}", home.Edit).Methods("GET", "POST")
 	router.HandleFunc("/detail/{id}", home.Detail).Methods("GET")
 	
 

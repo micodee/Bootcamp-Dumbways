@@ -4,7 +4,7 @@ type Project struct {
 	Title  string
 	Sdate  string
 	Edate  string
-	Durasi string
+	Duration string
 	Content string
 	Tnode   bool
 	Treact  bool
