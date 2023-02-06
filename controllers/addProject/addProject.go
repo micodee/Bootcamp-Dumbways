@@ -18,7 +18,7 @@ func AddProject(w http.ResponseWriter, r *http.Request) {
 	}
 
 	var data = map[string]interface{}{
-		"title" : "Add Project",
+		"title" : "Add Project | Marcel",
 		"isLogin" : true,
 	}
 

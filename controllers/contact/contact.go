@@ -15,7 +15,7 @@ func Contact(w http.ResponseWriter, r *http.Request) {
 	}
 
 	var data = map[string]interface{}{
-		"title" : "Contact Me",
+		"title" : "Contact Me | Marcel",
 		"isLogin" : true,
 	}
 

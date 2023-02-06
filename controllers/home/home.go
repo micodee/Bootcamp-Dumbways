@@ -42,12 +42,15 @@ func Home(w http.ResponseWriter, r *http.Request) {
 
 		// parsing template html
 	var tmpl, err = template.ParseFiles("./views/index.html")
+
 	if err != nil {
-		panic(err)
+		w.WriteHeader(http.StatusInternalServerError)
+		w.Write([]byte("message : " + err.Error()))
+		return
 	}
 	
 var data = map[string]interface{}{
-	"title" : "Home",
+	"title" : "Home | Marcel",
 	"isLogin" : true,
 }
 
@@ -147,7 +150,9 @@ func Update(w http.ResponseWriter, r *http.Request) {
 	var tmpl, err = template.ParseFiles("./views/projectUpdate.html")
 	// error handling
 	if err != nil {
-		panic(err)
+		w.WriteHeader(http.StatusInternalServerError)
+		w.Write([]byte("message : " + err.Error()))
+		return
 	}
 
 	id, _ := strconv.Atoi(mux.Vars(r)["id"])
@@ -281,7 +286,9 @@ func Detail(w http.ResponseWriter, r *http.Request) {
 	var tmpl, err = template.ParseFiles("./views/projectDetail.html")
 	// error handling
 	if err != nil {
-		panic(err)
+		w.WriteHeader(http.StatusInternalServerError)
+		w.Write([]byte("message : " + err.Error()))
+		return
 	}
 
 
