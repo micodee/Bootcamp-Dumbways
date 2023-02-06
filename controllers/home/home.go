@@ -29,7 +29,7 @@ var project = []entities.Project{
 		Sdate: "16 February 2023",
 		Edate: "23 February 2023",
 		Durasi: "7 Hari",
-		Content : "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor provident culpa magni eum ab voluptatum, iste error, aut voluptas officiis odio tempora reprehenderit quos voluptates mollitia explicabo. Dolores, tempore expedita?",
+		Content : "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor provident culpa magni eum ab voluptatum, iste error",
 		Tnode: true,
 		Treact: true,
 		Tjs: false,
@@ -142,6 +142,23 @@ func Add(w http.ResponseWriter, r *http.Request) {
 func Edit(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-type", "text/html; charset=utf-8")
 
+	var tmpl, err = template.ParseFiles("./views/projectEdit.html")
+	// error handling
+	if err != nil {
+		panic(err)
+	}
+
+	var data = map[string]interface{}{
+		"title" : "Edit Project",
+		"isLogin" : true,
+	}
+
+	resp := map[string]interface{}{
+		"Data" : data,
+	}
+
+	w.WriteHeader(http.StatusOK)
+	tmpl.Execute(w, resp)
 
 }
 

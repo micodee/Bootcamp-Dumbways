@@ -24,7 +24,7 @@ func main() {
 
 	router.HandleFunc("/add", home.Add).Methods("POST")
 	router.HandleFunc("/delete/{id}", home.Delete).Methods("GET")
-	// router.HandleFunc("/edit/{id}", home.Edit).Methods("GET", "POST")
+	router.HandleFunc("/edit/{id}", home.Edit).Methods("GET", "POST")
 	router.HandleFunc("/detail/{id}", home.Detail).Methods("GET")
 	
 
