@@ -2,10 +2,11 @@ package main
 
 import (
 	"fmt"
-	"projek/controllers/home"
+	"net/http"
+	"projek/config"
 	"projek/controllers/addProject"
 	"projek/controllers/contact"
-	"net/http"
+	"projek/controllers/home"
 
 	"github.com/gorilla/mux"
 )
@@ -13,6 +14,9 @@ import (
 func main() {
 	// menyiapkan routingan
 	router := mux.NewRouter()
+
+	// connect database postgreeSQL
+	config.ConnectDB()
 
 	// create static folder for public
 	router.PathPrefix("/public").Handler(http.StripPrefix("/public", http.FileServer(http.Dir("./public"))))
@@ -27,8 +31,8 @@ func main() {
 	router.HandleFunc("/upost/{id}", home.UpdatePost).Methods("POST")
 	router.HandleFunc("/delete/{id}", home.Delete).Methods("GET")
 	router.HandleFunc("/detail/{id}", home.Detail).Methods("GET")
-	
 
+	// create port
 	port := "5000"
 	fmt.Println("server running on port", port)
 	http.ListenAndServe("localhost:"+port, router)

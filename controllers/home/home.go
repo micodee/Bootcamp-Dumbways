@@ -1,10 +1,12 @@
 package home
 
 import (
+	"context"
 	"fmt"
 	"html/template"
 	"log"
 	"net/http"
+	"projek/config"
 	"projek/entities"
 	"strconv"
 	"time"
@@ -38,6 +40,8 @@ var project = []entities.Project{
 }
 
 func Home(w http.ResponseWriter, r *http.Request) {
+	config.ConnectDB()
+
 	w.Header().Set("Content-type", "text/html; charset-utf-8")
 
 		// parsing template html
@@ -49,6 +53,21 @@ func Home(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	
+	rows, _ := config.Connection.Query(context.Background(), "SELECT id, project_name, description, start_date, end_date FROM public.tb_projects;")
+	
+var result []entities.Project
+for rows.Next() {
+	var each = entities.Project{}
+
+	var err = rows.Scan(&each.Id, &each.Title, &each.Content, &each.Sdate, &each.Edate)
+	if err != nil {
+		fmt.Println(err.Error())
+		return
+	}
+
+	result = append(result, each)
+}
+
 var data = map[string]interface{}{
 	"title" : "Home | Marcel",
 	"isLogin" : true,
@@ -56,7 +75,7 @@ var data = map[string]interface{}{
 
 	resp := map[string]interface{}{
 		"Data" : data,
-		"Projects" : project,
+		"Projects" : result,
 	}
 
 

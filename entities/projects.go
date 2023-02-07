@@ -1,6 +1,7 @@
 package entities
 
 type Project struct {
+	Id      int
 	Title  string
 	Sdate  string
 	Edate  string
