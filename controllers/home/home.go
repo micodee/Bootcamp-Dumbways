@@ -40,7 +40,6 @@ var project = []entities.Project{
 }
 
 func Home(w http.ResponseWriter, r *http.Request) {
-	config.ConnectDB()
 
 	w.Header().Set("Content-type", "text/html; charset-utf-8")
 
@@ -53,20 +52,21 @@ func Home(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	
-	rows, _ := config.Connection.Query(context.Background(), "SELECT id, project_name, description, start_date, end_date FROM public.tb_projects;")
-	
-var result []entities.Project
-for rows.Next() {
-	var each = entities.Project{}
+					rows, _ := config.ConnDB.Query(context.Background(), "SELECT id, project_name, description, start_date, end_date, duration FROM public.tb_projects;")
+					
+				var result []entities.Project
 
-	var err = rows.Scan(&each.Id, &each.Title, &each.Content, &each.Sdate, &each.Edate)
-	if err != nil {
-		fmt.Println(err.Error())
-		return
-	}
+				for rows.Next() {
+					var each = entities.Project{}
 
-	result = append(result, each)
-}
+					var err = rows.Scan(&each.Id, &each.Title, &each.Content, &each.Sdate, &each.Edate, &each.Duration)
+					if err != nil {
+						fmt.Println(err.Error())
+						return
+					}
+					
+					result = append(result, each)
+				}
 
 var data = map[string]interface{}{
 	"title" : "Home | Marcel",

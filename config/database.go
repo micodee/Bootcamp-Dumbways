@@ -8,14 +8,14 @@ import (
 	"github.com/jackc/pgx/v5"
 )
 
-var Connection *pgx.Conn
+var ConnDB *pgx.Conn
 
 func ConnectDB() {
 
 	var err error
 	DBurl := "postgres://postgres:132435@localhost:5432/DBproject"
 
-	Connection, err = pgx.Connect(context.Background(), DBurl)
+	ConnDB, err = pgx.Connect(context.Background(), DBurl)
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Unable to connect to database: %v", err)
 		os.Exit(1)

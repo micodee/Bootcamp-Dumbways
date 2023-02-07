@@ -15,7 +15,7 @@ func main() {
 	// menyiapkan routingan
 	router := mux.NewRouter()
 
-	// connect database postgreeSQL
+	// create connection database.go
 	config.ConnectDB()
 
 	// create static folder for public
