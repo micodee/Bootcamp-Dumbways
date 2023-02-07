@@ -29,6 +29,10 @@ func main() {
 	router.HandleFunc("/detail/{id}", home.Detail).Methods("GET")
 	
 
-	fmt.Println("Server Running on port 5000")
-	http.ListenAndServe("localhost:5000", router)
+	port := "5000"
+	fmt.Println("server running on port", port)
+	http.ListenAndServe("localhost:"+port, router)
+
+	// fmt.Println("Server Running on port 5000")
+	// http.ListenAndServe("localhost:5000", router)
 }
