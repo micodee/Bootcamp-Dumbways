@@ -140,7 +140,7 @@
           <div class="card p-3 d-flex justify-content-between" style="width: 100%;">
             <div class="card-body p-0 card-project">
                 <img src="./public/img/profile.jpg" height="250" class="card-img-top mb-3" alt="profile" style="object-fit: cover;">
-                <a href="./detail/{{ $index }}" class="card-title fw-bold m-0 fs-4">{{ $data.Title }}</a>
+                <a href="./detail/{{ $data.Id }}" class="card-title fw-bold m-0 fs-4">{{ $data.Title }}</a>
                 <p class="card-text bg-subtitle">Duration : {{ $data.Duration }}</p>
                 <p class="fw-semibold lh-2">{{ $data.Content }}</p>
               </div>
@@ -161,7 +161,7 @@
                 </div>
                 <div class="d-flex justify-content-evenly mt-4 gap-1">
                   <a href="/update/{{$index}}" class="btn-black text-center rounded-2 fw-semibold p-1" style="width: 100%;">update</a>
-                  <a href="/delete/{{$index}}" class="btn-black text-center rounded-2 fw-semibold p-1" style="width: 100%;" onclick="return confirm('You are going to delete {{ $data.Title }} Project?')">delete</a>
+                  <a href="/delete/{{$data.Id}}" class="btn-black text-center rounded-2 fw-semibold p-1" style="width: 100%;" onclick="return confirm('You are going to delete {{ $data.Title }} Project?')">delete</a>
                 </div>
               </div>
           </div>

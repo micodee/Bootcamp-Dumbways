@@ -94,10 +94,6 @@ func Add(w http.ResponseWriter, r *http.Request) {
 	content := r.PostForm.Get(("desc"))
 	SD := r.PostForm.Get("sdate")
 	ED := r.PostForm.Get("edate")
-	node := false
-	react := false
-	js := false
-	hateml := false
 
 	formatLayout := "2006-01-02"
 	sDate, _ := time.Parse(formatLayout, SD)
@@ -121,43 +117,14 @@ func Add(w http.ResponseWriter, r *http.Request) {
 		distance = strconv.FormatFloat(durasi.Hours()/24/30/12, 'f', 0, 64) + " Years"
 	}
 
-	// if checked
-	if r.FormValue("nodejs") != "" {
-		node = true
-	}
-	if r.FormValue("reactjs") != "" {
-		react = true
-	}
-	if r.FormValue("js") != "" {
-		js = true
-	}
-	if r.FormValue("html") != "" {
-		hateml = true
-	}
+	addID := "INSERT INTO tb_projects(project_name, start_date, end_date, duration, description) VALUES ($1, $2, $3, $4, $5)"
+	config.ConnDB.Exec(context.Background(), addID, title, sDateFormat, eDateFormat, distance, content)
 
-	var newAdd = entities.Project{
-		Title : title,
-		Sdate: sDateFormat,
-		Edate: eDateFormat,
-		Duration: distance,
-		Content: content,
-		Tnode: node,
-		Treact: react,
-		Tjs: js,
-		Thtml: hateml,
-	}
-
-	project = append(project, newAdd)
-
-	// fmt.Println("Project Name : " + r.PostForm.Get("pname"))
-	// fmt.Println("Description : " + r.PostForm.Get("desc"))
-	// fmt.Println("Start Date : " + r.PostForm.Get("sdate"))
-	// fmt.Println("End Date : " + r.PostForm.Get("edate"))
-	// fmt.Println("Duration : " + selisih)
-	// fmt.Println("Node : " + r.PostForm.Get("nodejs"))
-	// fmt.Println("React : " + r.PostForm.Get("reactjs"))
-	// fmt.Println("Javascript : " + r.PostForm.Get("js"))
-	// fmt.Println("HTML : " + r.PostForm.Get("html"))
+	// // fmt.Println("Project Name : " + r.PostForm.Get("pname"))
+	// // fmt.Println("Description : " + r.PostForm.Get("desc"))
+	// // fmt.Println("Start Date : " + r.PostForm.Get("sdate"))
+	// // fmt.Println("End Date : " + r.PostForm.Get("edate"))
+	// // fmt.Println("Duration : " + selisih)
 
 	http.Redirect(w, r, "/", http.StatusMovedPermanently)
 }
@@ -286,11 +253,19 @@ func UpdatePost(w http.ResponseWriter, r *http.Request) {
 
 
 func Delete(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Content-type", "text/html; charset=utf-8")
+
 	id, _ := strconv.Atoi(mux.Vars(r)["id"])
 	
-	project = append(project[:id], project[id+1:]...)
+	deleteID := "DELETE FROM tb_projects WHERE id=$1"
+	_, err := config.ConnDB.Exec(context.Background(), deleteID, id) 
 
-	fmt.Println(id)
+	if err != nil {
+		w.WriteHeader(http.StatusInternalServerError)
+		w.Write([]byte("message : " + err.Error()))
+		return
+	}
+
 	http.Redirect(w, r, "/", http.StatusMovedPermanently)
 }
 
@@ -299,8 +274,6 @@ func Delete(w http.ResponseWriter, r *http.Request) {
 func Detail(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-type", "text/html; charset-utf-8")
 
-	// manangkap id (id, _ (tanda _ tidak ingin menampilkan eror))
-	id, _ := strconv.Atoi(mux.Vars(r)["id"])
 	// parsing template html
 	var tmpl, err = template.ParseFiles("./views/projectDetail.html")
 	// error handling
@@ -309,24 +282,22 @@ func Detail(w http.ResponseWriter, r *http.Request) {
 		w.Write([]byte("message : " + err.Error()))
 		return
 	}
+	
+	// manangkap id (id, _ (tanda _ tidak ingin menampilkan eror))
+	id, _ := strconv.Atoi(mux.Vars(r)["id"])
 
-
+	selectDB := "SELECT id, project_name, start_date, end_date, duration, description FROM tb_projects WHERE id=$1"
 	projectDetail := entities.Project{}
-	for i, item := range project {
-		if i == id {
-			projectDetail = entities.Project{
-				Title: item.Title,
-				Content: item.Content,
-				Sdate: item.Sdate,
-				Edate: item.Edate,
-				Duration: item.Duration,
-				Treact: item.Treact,
-				Tnode: item.Tnode,
-				Tjs: item.Tjs,
-				Thtml: item.Thtml,
-			}
-		}
+	err = config.ConnDB.QueryRow(context.Background(), selectDB, id).Scan(&projectDetail.Id, &projectDetail.Title, &projectDetail.Sdate, &projectDetail.Edate, &projectDetail.Duration, &projectDetail.Content)
+
+	if err != nil {
+		w.WriteHeader(http.StatusInternalServerError)
+		w.Write([]byte("Message : " + err.Error()))
+		return
 	}
+
+	
+ 
 
 	var data = map[string]interface{}{
 		"title" : "Detail Project",
