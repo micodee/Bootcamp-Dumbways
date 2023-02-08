@@ -21,10 +21,7 @@ var project = []entities.Project{
 		Edate: "12 February 2023",
 		Duration: "1 Weeks",
 		Content : "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor provident culpa magni eum ab voluptatum, iste error, aut voluptas officiis odio tempora reprehenderit quos voluptates mollitia explicabo. Dolores, tempore expedita?",
-		Tnode: true,
-		Treact: true,
-		Tjs: true,
-		Thtml: true,
+		Technologies: []bool{true, false, false, true},
 	},
 	{
 		Title : "bai bfdsl ksssu ldjkacau",
@@ -32,10 +29,7 @@ var project = []entities.Project{
 		Edate: "22 February 2023",
 		Duration: "6 Days",
 		Content : "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor provident culpa magni eum ab voluptatum, iste error",
-		Tnode: true,
-		Treact: true,
-		Tjs: false,
-		Thtml: false,
+		Technologies: []bool{true, false, false, true},
 	},
 }
 
@@ -78,7 +72,10 @@ var data = map[string]interface{}{
 		"Projects" : result,
 	}
 
-
+fmt.Println(project[0].Technologies[0])
+for i, tech := range project[0].Technologies {
+	fmt.Printf("Technology %d: %+v\n", i+1, tech)
+}
 
 	w.WriteHeader(http.StatusOK)
 	tmpl.Execute(w, resp)
@@ -94,10 +91,6 @@ func Add(w http.ResponseWriter, r *http.Request) {
 	content := r.PostForm.Get(("desc"))
 	SD := r.PostForm.Get("sdate")
 	ED := r.PostForm.Get("edate")
-	node := false
-	react := false
-	js := false
-	hateml := false
 
 	formatLayout := "2006-01-02"
 	sDate, _ := time.Parse(formatLayout, SD)
@@ -121,30 +114,12 @@ func Add(w http.ResponseWriter, r *http.Request) {
 		distance = strconv.FormatFloat(durasi.Hours()/24/30/12, 'f', 0, 64) + " Years"
 	}
 
-	// if checked
-	if r.FormValue("nodejs") != "" {
-		node = true
-	}
-	if r.FormValue("reactjs") != "" {
-		react = true
-	}
-	if r.FormValue("js") != "" {
-		js = true
-	}
-	if r.FormValue("html") != "" {
-		hateml = true
-	}
-
 	var newAdd = entities.Project{
 		Title : title,
 		Sdate: sDateFormat,
 		Edate: eDateFormat,
 		Duration: distance,
 		Content: content,
-		Tnode: node,
-		Treact: react,
-		Tjs: js,
-		Thtml: hateml,
 	}
 
 	project = append(project, newAdd)
@@ -187,10 +162,6 @@ func Update(w http.ResponseWriter, r *http.Request) {
 				Sdate: ConvertSdate.Format("2006-01-02"),
 				Edate: ConvertEdate.Format("2006-01-02"),
 				Duration: item.Duration,
-				Treact: item.Treact,
-				Tnode: item.Tnode,
-				Tjs: item.Tjs,
-				Thtml: item.Thtml,
 			}
 		}
 	}
@@ -225,10 +196,6 @@ func UpdatePost(w http.ResponseWriter, r *http.Request) {
 	content := r.PostForm.Get(("desc"))
 	SD := r.PostForm.Get("sdate")
 	ED := r.PostForm.Get("edate")
-	node := false
-	react := false
-	js := false
-	hateml := false
 
 	formatLayout := "2006-01-02"
 	sDate, _ := time.Parse(formatLayout, SD)
@@ -252,19 +219,6 @@ func UpdatePost(w http.ResponseWriter, r *http.Request) {
 		distance = strconv.FormatFloat(durasi.Hours()/24/30/12, 'f', 0, 64) + " Years"
 	}
 
-	// if checked
-	if r.FormValue("nodejs") != "" {
-		node = true
-	}
-	if r.FormValue("reactjs") != "" {
-		react = true
-	}
-	if r.FormValue("js") != "" {
-		js = true
-	}
-	if r.FormValue("html") != "" {
-		hateml = true
-	}
 
 	for i := range project {
 		update := &project[id]
@@ -274,10 +228,6 @@ func UpdatePost(w http.ResponseWriter, r *http.Request) {
 			(*update).Edate = eDateFormat
 			(*update).Duration = distance
 			(*update).Content = content
-			(*update).Tnode = node
-			(*update).Treact = react
-			(*update).Tjs = js
-			(*update).Thtml = hateml
 		}
 	}
 
@@ -320,10 +270,6 @@ func Detail(w http.ResponseWriter, r *http.Request) {
 				Sdate: item.Sdate,
 				Edate: item.Edate,
 				Duration: item.Duration,
-				Treact: item.Treact,
-				Tnode: item.Tnode,
-				Tjs: item.Tjs,
-				Thtml: item.Thtml,
 			}
 		}
 	}
