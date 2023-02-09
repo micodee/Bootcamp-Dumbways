@@ -52,7 +52,8 @@ func Home(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	
-					rows, _ := config.ConnDB.Query(context.Background(), "SELECT id, project_name, description, start_date, end_date, duration FROM public.tb_projects;")
+	readDT := "SELECT id, project_name, description, start_date, end_date, duration FROM public.tb_projects;"
+					rows, _ := config.ConnDB.Query(context.Background(), readDT)
 					
 				var result []entities.Project
 
@@ -286,9 +287,9 @@ func Detail(w http.ResponseWriter, r *http.Request) {
 	// manangkap id (id, _ (tanda _ tidak ingin menampilkan eror))
 	id, _ := strconv.Atoi(mux.Vars(r)["id"])
 
-	selectDB := "SELECT id, project_name, start_date, end_date, duration, description FROM tb_projects WHERE id=$1"
+	selectID := "SELECT id, project_name, start_date, end_date, duration, description FROM tb_projects WHERE id=$1"
 	projectDetail := entities.Project{}
-	err = config.ConnDB.QueryRow(context.Background(), selectDB, id).Scan(&projectDetail.Id, &projectDetail.Title, &projectDetail.Sdate, &projectDetail.Edate, &projectDetail.Duration, &projectDetail.Content)
+	err = config.ConnDB.QueryRow(context.Background(), selectID, id).Scan(&projectDetail.Id, &projectDetail.Title, &projectDetail.Sdate, &projectDetail.Edate, &projectDetail.Duration, &projectDetail.Content)
 
 	if err != nil {
 		w.WriteHeader(http.StatusInternalServerError)
