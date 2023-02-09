@@ -1,4 +1,1 @@
 install module = go get github.com/jackc/pgx/v5
-
-nonaktifkan server DB = ./pgadmin4 stop
-aktifkan server DB = ./pgadmin4 start

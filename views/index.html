@@ -148,21 +148,12 @@
               </div>
               <div>
                 <div class="tech d-flex justify-content-start align-items-center gap-lg-4 gap-2 mt-2 flex-wrap">
-                  {{if $data.Tnode}}
-                  <h2><i class="fa-brands fa-node"></i></h2>
-                  {{ end }}
-                  {{if $data.Treact}}
-                  <h2><i class="fa-brands fa-react"></i></h2>
-                  {{ end }}
-                  {{if $data.Tjs}}
-                  <h2><i class="fa-brands fa-js"></i></h2>
-                  {{ end }}
-                  {{if $data.Thtml}}
-                  <h2><i class="fa-brands fa-html5"></i></h2>
+                  {{range $index, $data := $data.Technologies}}
+                  <h2><i class="fa-brands fa-{{ $data }}"></i></h2>
                   {{ end }}
                 </div>
                 <div class="d-flex justify-content-evenly mt-4 gap-1">
-                  <a href="/update/{{$index}}" class="btn-black text-center rounded-2 fw-semibold p-1" style="width: 100%;">update</a>
+                  <a href="/update/{{$data.Id}}" class="btn-black text-center rounded-2 fw-semibold p-1" style="width: 100%;">update</a>
                   <a href="/delete/{{$data.Id}}" class="btn-black text-center rounded-2 fw-semibold p-1" style="width: 100%;" onclick="return confirm('You are going to delete {{ $data.Title }} Project?')">delete</a>
                 </div>
               </div>
