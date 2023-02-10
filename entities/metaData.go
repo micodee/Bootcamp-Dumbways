@@ -6,3 +6,7 @@ type MetaData struct {
 	Username  string
 	FlashData string
 }
+
+var Data = MetaData{
+	Title: "Personal Web",
+}

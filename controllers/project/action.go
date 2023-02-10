@@ -56,7 +56,7 @@ func Home(w http.ResponseWriter, r *http.Request) {
 		
 		var data = map[string]interface{}{
 			"title" : "Home | Marcel",
-			"isLogin" : true,
+			"isLOGIN" : false,
 		}
 		
 		resp := map[string]interface{}{
@@ -229,10 +229,10 @@ func Detail(w http.ResponseWriter, r *http.Request) {
 	
 	// manangkap id (id, _ (tanda _ tidak ingin menampilkan eror))
 	id, _ := strconv.Atoi(mux.Vars(r)["id"])
-	selectID := "SELECT id, project_name, start_date, end_date, description, technologies FROM tb_projects WHERE id=$1"
-	projectDetail := entities.Project{}
+	selectID := "SELECT id, project_name, start_date, end_date, description, technologies, image FROM tb_projects WHERE id=$1"
+	detail := entities.Project{}
 	rows := config.ConnDB.QueryRow(context.Background(), selectID, id)
-	err = rows.Scan(&projectDetail.Id, &projectDetail.Title, &projectDetail.Sdate, &projectDetail.Edate, &projectDetail.Content, &projectDetail.Technologies)
+	err = rows.Scan(&detail.Id, &detail.Title, &detail.Sdate, &detail.Edate, &detail.Content, &detail.Technologies, &detail.Image)
 	if err != nil {
 		w.WriteHeader(http.StatusInternalServerError)
 		w.Write([]byte("Message : " + err.Error()))
@@ -240,8 +240,8 @@ func Detail(w http.ResponseWriter, r *http.Request) {
 	}
 
 	// duration
-	ConvertSdate, _ := time.Parse("02 January 2006", projectDetail.Sdate)
-	ConvertEdate, _ := time.Parse("02 January 2006", projectDetail.Edate)
+	ConvertSdate, _ := time.Parse("02 January 2006", detail.Sdate)
+	ConvertEdate, _ := time.Parse("02 January 2006", detail.Edate)
 	duration := ConvertEdate.Sub(ConvertSdate)
 	var distance string
 	if duration.Hours()/24 < 7 {
@@ -256,7 +256,7 @@ func Detail(w http.ResponseWriter, r *http.Request) {
 
 	// technology
 	node, react, js, html := false, false, false, false
-	tech := projectDetail.Technologies
+	tech := detail.Technologies
 	for _ , i := range tech {
 		switch i {
 		case "node":
@@ -277,7 +277,7 @@ func Detail(w http.ResponseWriter, r *http.Request) {
 
 	resp := map[string]interface{}{
 		"Data" : data,
-		"Projects" : projectDetail,
+		"Projects" : detail,
 		"Duration" : distance,
 		"T1" : node,
 		"T2" : react,

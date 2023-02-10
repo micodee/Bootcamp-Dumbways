@@ -51,7 +51,7 @@
           <span class="navbar-toggler-icon"></span>
         </button>
 
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div class="collapse navbar-collapse d-flex justify-content-between" id="navbarSupportedContent">
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
             <li class="nav-item me-4">
               <a
@@ -61,23 +61,23 @@
                 >Home</a
               >
             </li>
-            {{ if .Data.isLogin }}
+            {{ if .Data.isLOGIN }}
             <li class="nav-item">
               <a class="nav-link fw-semibold" href="/addProject"
                 >Add Project</a
               >
             </li>
             {{ else }}
-            <li class="nav-item">
-              <a class="nav-link fw-semibold" href="#"
-                >Login</a
-              >
-            </li>
             {{ end }}
           </ul>
           
+          {{ if .Data.isLOGIN }}
+          <a href="#" class="fw-semibold me-4">Hi, Marcel</a>
+          <a href="/logout" class="fw-semibold me-5">Logout</a>
+          {{ else }}
           <a href="/register" class="fw-semibold me-4">Register</a>
           <a href="/login" class="fw-semibold me-5">Login</a>
+          {{ end }}
           <div class="contact">
             <a href="/contact" class="btn-black fw-semibold rounded-2 ps-3 pe-3 pt-1 pb-1">Contact Me</a>
           </div>
@@ -152,10 +152,14 @@
                   <h2><i class="fa-brands fa-{{ $data }}"></i></h2>
                   {{ end }}
                 </div>
+                
+                {{ if $.Data.isLOGIN }}
                 <div class="d-flex justify-content-evenly mt-4 gap-1">
                   <a href="/update/{{$data.Id}}" class="btn-black text-center rounded-2 fw-semibold p-1" style="width: 100%;">update</a>
                   <a href="/delete/{{$data.Id}}" class="btn-black text-center rounded-2 fw-semibold p-1" style="width: 100%;" onclick="return confirm('You are going to delete {{ $data.Title }} Project?')">delete</a>
                 </div>
+                {{ else }}
+                {{ end }}
               </div>
           </div>
         </div>
