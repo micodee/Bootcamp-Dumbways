@@ -33,7 +33,7 @@ func main() {
 // routing actions
 	router.HandleFunc("/add", middleware.UploadFile(project.Add)).Methods("POST")
 	router.HandleFunc("/update/{id}", project.Update).Methods("GET")
-	router.HandleFunc("/upost/{id}", project.UpdatePost).Methods("POST")
+	router.HandleFunc("/upost/{id}", middleware.UploadFile(project.UpdatePost)).Methods("POST")
 	router.HandleFunc("/delete/{id}", project.Delete).Methods("GET")
 	router.HandleFunc("/detail/{id}", project.Detail).Methods("GET")
 

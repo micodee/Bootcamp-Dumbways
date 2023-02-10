@@ -179,14 +179,16 @@ func UpdatePost(w http.ResponseWriter, r *http.Request) {
 	SD := r.PostForm.Get("sdate")
 	ED := r.PostForm.Get("edate")
 	tech := r.Form["check"]
+	image := r.Context().Value("dataFile")
+	img := image.(string)
 
 	sDate, _ := time.Parse("2006-01-02", SD)
 	sDateFormat := sDate.Format("02 January 2006")
 	eDate, _ := time.Parse("2006-01-02", ED)
 	eDateFormat := eDate.Format("02 January 2006")
 
-	update := "UPDATE public.tb_projects SET project_name=$1, start_date=$2, end_date=$3, description=$4, technologies=$5 WHERE id=$6"
-	_, err = config.ConnDB.Exec(context.Background(), update, title, sDateFormat, eDateFormat, content, tech, id)
+	update := "UPDATE public.tb_projects SET project_name=$1, start_date=$2, end_date=$3, description=$4, technologies=$5, image=$6 WHERE id=$7"
+	_, err = config.ConnDB.Exec(context.Background(), update, title, sDateFormat, eDateFormat, content, tech, img, id)
 	if err != nil {
 		w.WriteHeader(http.StatusInternalServerError)
 		w.Write([]byte("message : " + err.Error()))

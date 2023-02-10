@@ -72,7 +72,7 @@
       <h2 class="text-center fw-bolder mb-5 mt-5 text-uppercase">update my project</h2>
       <div class="container col-xl-3 col-12 row p-0">
         {{ range $index, $data := .GetUpdate}}
-        <form action="/upost/{{$data.Id}}" method="post">
+        <form action="/upost/{{$data.Id}}" method="post" enctype="multipart/form-data">
           <div class="mb-3">
             <label for="pname" class="fw-bold">Project Name</label>
             <input type="text" class="form-control" name="pname" id="pname" autocomplete="off" value="{{ $data.Title }}">
@@ -130,7 +130,7 @@
           </div>
           <div class="mb-3">
             <label for="image" class="fw-bold">Upload Image</label>
-            <input class="form-control" type="file" id="image">
+            <input class="form-control" type="file" id="image" name="uploadImage">
           </div>
           <div class="d-flex justify-content-end">
             <button class="btn btn-black rounded-4 fw-bold ps-4 pe-4 pt-1 pb-1 mt-4">submit</button>
