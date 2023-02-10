@@ -96,14 +96,14 @@
             <div class="mb-3 d-flex justify-content-between row">
               <div class="col-6 d-flex flex-column gap-1">
                 <label class="form-check-label" for="nodejs">
-                  {{ if .GetUpdate.Tnode }}
+                  {{ if $.T1 }}
                   <input type="checkbox" class="form-check-input me-2" id="nodejs" value="nodejs" name="nodejs" checked>Node Js
                   {{ else }}
                   <input type="checkbox" class="form-check-input me-2" id="nodejs" value="nodejs" name="nodejs">Node Js
                   {{ end }}
                 </label>
                 <label class="form-check-label" for="reactjs">
-                  {{ if .GetUpdate.Treact }}
+                  {{ if $.T2 }}
                   <input type="checkbox" class="form-check-input me-2" id="reactjs" value="reactjs" name="reactjs" checked>React Js
                   {{ else }}
                   <input type="checkbox" class="form-check-input me-2" id="reactjs" value="reactjs" name="reactjs">React Js
@@ -112,14 +112,14 @@
               </div>
               <div class="col-6 d-flex flex-column gap-1">
                 <label class="form-check-label" for="js">
-                  {{ if .GetUpdate.Tjs }}
+                  {{ if $.T3 }}
                   <input type="checkbox" class="form-check-input me-2" id="js" value="js" name="js" checked>Javascript
                   {{ else }}
                   <input type="checkbox" class="form-check-input me-2" id="js" value="js" name="js">Javascript
                   {{ end }}
                 </label>
                 <label class="form-check-label" for="html">
-                  {{ if .GetUpdate.Thtml }}
+                  {{ if $.T4 }}
                   <input type="checkbox" class="form-check-input me-2" id="html" value="html" name="html" checked>HTML 5
                   {{ else }}
                   <input type="checkbox" class="form-check-input me-2" id="html" value="html" name="html">HTML 5

@@ -89,8 +89,6 @@ func Home(w http.ResponseWriter, r *http.Request) {
 			"Projects" : result,
 		}
 		
-
-
 	w.WriteHeader(http.StatusOK)
 	tmpl.Execute(w, resp)
 }
@@ -113,8 +111,8 @@ func Add(w http.ResponseWriter, r *http.Request) {
 	eDate, _ := time.Parse("2006-01-02", ED)
 	eDateFormat := eDate.Format("02 January 2006")
 
-	addID := "INSERT INTO tb_projects(project_name, start_date, end_date, description, technologies) VALUES ($1, $2, $3, $4, $5, $6)"
-	config.ConnDB.Exec(context.Background(), addID, title, sDateFormat, eDateFormat, content, tech )
+	addID := "INSERT INTO tb_projects(project_name, start_date, end_date, description, technologies) VALUES ($1, $2, $3, $4, $5)"
+	config.ConnDB.Exec(context.Background(), addID, title, sDateFormat, eDateFormat, content, tech)
 
 	http.Redirect(w, r, "/", http.StatusMovedPermanently)
 }
@@ -147,6 +145,22 @@ func Update(w http.ResponseWriter, r *http.Request) {
 	SD := ConvertSdate.Format("2006-01-02")
 	ED := ConvertEdate.Format("2006-01-02")
 
+	// technology
+	node, react, js, html := false, false, false, false
+	tech := getID.Technologies
+	for _ , i := range tech {
+		switch i {
+		case "node":
+			node = true
+		case "react":
+			react = true
+		case "js":
+			js = true
+		case "html5":
+			html = true
+		}
+	}
+
 	result := []entities.Project{getID}
 
 	var data = map[string]interface{}{
@@ -159,6 +173,10 @@ func Update(w http.ResponseWriter, r *http.Request) {
 		"GetUpdate" : result,
 		"Sdate" : SD,
 		"Edate" : ED,
+		"T1" : node,
+		"T2" : react,
+		"T3" : js,
+		"T4" : html,
 	}
 
 	w.WriteHeader(http.StatusOK)
