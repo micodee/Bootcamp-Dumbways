@@ -16,7 +16,7 @@
       }
     </style>
     <!-- global css eksternal -->
-    <link rel="stylesheet" href="./public/css/style.css" />
+    <link rel="stylesheet" href="/public/css/style.css" />
     <!-- icon font awesome -->
     <link
       rel="stylesheet"
@@ -141,7 +141,7 @@
         <div class="col-6 col-md-4 p-lg-3 p-1 d-flex justify-content-center align-content-center">
           <div class="card p-3 d-flex justify-content-between" style="width: 100%;">
             <div class="card-body p-0 card-project">
-                <img src="./public/img/profile.jpg" height="250" class="card-img-top mb-3" alt="profile" style="object-fit: cover;">
+                <img src="http://localhost:5000/uploads/{{$data.Image}}" height="250" class="card-img-top mb-3" alt="profile" style="object-fit: cover;">
                 <a href="./detail/{{ $data.Id }}" class="card-title fw-bold m-0 fs-4">{{ $data.Title }}</a>
                 <p class="card-text bg-subtitle">Duration : {{ $data.Duration }}</p>
                 <p class="fw-semibold lh-2">{{ $data.Content }}</p>

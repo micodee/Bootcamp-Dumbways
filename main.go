@@ -7,6 +7,7 @@ import (
 	"projek/controllers/auth"
 	"projek/controllers/pages"
 	"projek/controllers/project"
+	"projek/middleware"
 
 	"github.com/gorilla/mux"
 )
@@ -20,6 +21,7 @@ func main() {
 
 	// create static folder for public
 	router.PathPrefix("/public").Handler(http.StripPrefix("/public", http.FileServer(http.Dir("./public"))))
+	router.PathPrefix("/uploads").Handler(http.StripPrefix("/uploads/", http.FileServer(http.Dir("./uploads"))))
 
 	// routing pages
 	router.HandleFunc("/", project.Home).Methods("GET")
@@ -29,7 +31,7 @@ func main() {
 	router.HandleFunc("/login", pages.FormLogin).Methods("GET")
 
 // routing actions
-	router.HandleFunc("/add", project.Add).Methods("POST")
+	router.HandleFunc("/add", middleware.UploadFile(project.Add)).Methods("POST")
 	router.HandleFunc("/update/{id}", project.Update).Methods("GET")
 	router.HandleFunc("/upost/{id}", project.UpdatePost).Methods("POST")
 	router.HandleFunc("/delete/{id}", project.Delete).Methods("GET")

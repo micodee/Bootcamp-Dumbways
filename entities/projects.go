@@ -8,8 +8,5 @@ type Project struct {
 	Duration string
 	Content string
 	Technologies []string
-	Tnode   bool
-	Treact  bool
-	Tjs     bool
-	Thtml   bool
+	Image string
 }

@@ -14,31 +14,6 @@ import (
 	"github.com/gorilla/mux"
 )
 
-var project = []entities.Project{
-	{
-		Title : "Hallo World",
-		Sdate: "05 February 2023",
-		Edate: "12 February 2023",
-		Duration: "1 Weeks",
-		Content : "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor provident culpa magni eum ab voluptatum, iste error, aut voluptas officiis odio tempora reprehenderit quos voluptates mollitia explicabo. Dolores, tempore expedita?",
-		Tnode: true,
-		Treact: true,
-		Tjs: true,
-		Thtml: true,
-	},
-	{
-		Title : "bai bfdsl ksssu ldjkacau",
-		Sdate: "16 February 2023",
-		Edate: "22 February 2023",
-		Duration: "6 Days",
-		Content : "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor provident culpa magni eum ab voluptatum, iste error",
-		Tnode: true,
-		Treact: true,
-		Tjs: false,
-		Thtml: false,
-	},
-}
-
 func Home(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-type", "text/html; charset-utf-8")
 	var tmpl, err = template.ParseFiles("./views/index.html")
@@ -48,13 +23,13 @@ func Home(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	
-	readDT := "SELECT id, project_name, description, start_date, end_date, technologies FROM public.tb_projects;"
+	readDT := "SELECT id, project_name, description, start_date, end_date, technologies, image FROM public.tb_projects;"
 	rows, _ := config.ConnDB.Query(context.Background(), readDT)
 					
 	var result []entities.Project
  for rows.Next() {
 	var each = entities.Project{}
- var err = rows.Scan(&each.Id, &each.Title, &each.Content, &each.Sdate, &each.Edate, &each.Technologies)
+ var err = rows.Scan(&each.Id, &each.Title, &each.Content, &each.Sdate, &each.Edate, &each.Technologies, &each.Image)
 	if err != nil {
 		fmt.Println(err.Error())
 		return
@@ -104,6 +79,8 @@ func Add(w http.ResponseWriter, r *http.Request) {
 	SD := r.PostForm.Get("sdate")
 	ED := r.PostForm.Get("edate")
 	tech := r.Form["check"]
+	image := r.Context().Value("dataFile")
+	img := image.(string)
 
 	// convert date ke string
 	sDate, _ := time.Parse("2006-01-02", SD)
@@ -111,8 +88,13 @@ func Add(w http.ResponseWriter, r *http.Request) {
 	eDate, _ := time.Parse("2006-01-02", ED)
 	eDateFormat := eDate.Format("02 January 2006")
 
-	addID := "INSERT INTO tb_projects(project_name, start_date, end_date, description, technologies) VALUES ($1, $2, $3, $4, $5)"
-	config.ConnDB.Exec(context.Background(), addID, title, sDateFormat, eDateFormat, content, tech)
+	addID := "INSERT INTO tb_projects(project_name, start_date, end_date, description, image, technologies) VALUES ($1, $2, $3, $4, $5, $6)"
+	_, err = config.ConnDB.Exec(context.Background(), addID, title, sDateFormat, eDateFormat, content, img, tech)
+	if err != nil {
+		w.WriteHeader(http.StatusInternalServerError)
+		w.Write([]byte("message : " + err.Error()))
+		return
+	}
 
 	http.Redirect(w, r, "/", http.StatusMovedPermanently)
 }

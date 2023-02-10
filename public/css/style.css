@@ -33,3 +33,6 @@
       .contact a {
         color: white !important;
       }
+      .active {
+        color: orangered !important;
+      }
