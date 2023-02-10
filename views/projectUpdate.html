@@ -71,8 +71,8 @@
     <div class="d-flex justify-content-center flex-column align-items-center mt-5 pb-5 ps-4 pe-4">
       <h2 class="text-center fw-bolder mb-5 mt-5 text-uppercase">update my project</h2>
       <div class="container col-xl-3 col-12 row p-0">
-        <form action="/upost/{{.ID}}" method="post">
-          {{ range $index, $data := .GetUpdate}}
+        {{ range $index, $data := .GetUpdate}}
+        <form action="/upost/{{$data.Id}}" method="post">
           <div class="mb-3">
             <label for="pname" class="fw-bold">Project Name</label>
             <input type="text" class="form-control" name="pname" id="pname" autocomplete="off" value="{{ $data.Title }}">
@@ -97,32 +97,32 @@
               <div class="col-6 d-flex flex-column gap-1">
                 <label class="form-check-label" for="nodejs">
                   {{ if $.T1 }}
-                  <input type="checkbox" class="form-check-input me-2" id="nodejs" value="nodejs" name="nodejs" checked>Node Js
+                  <input type="checkbox" class="form-check-input me-2" id="nodejs" value="node" name="check" checked>Node Js
                   {{ else }}
-                  <input type="checkbox" class="form-check-input me-2" id="nodejs" value="nodejs" name="nodejs">Node Js
+                  <input type="checkbox" class="form-check-input me-2" id="nodejs" value="node" name="check">Node Js
                   {{ end }}
                 </label>
                 <label class="form-check-label" for="reactjs">
                   {{ if $.T2 }}
-                  <input type="checkbox" class="form-check-input me-2" id="reactjs" value="reactjs" name="reactjs" checked>React Js
+                  <input type="checkbox" class="form-check-input me-2" id="reactjs" value="react" name="check" checked>React Js
                   {{ else }}
-                  <input type="checkbox" class="form-check-input me-2" id="reactjs" value="reactjs" name="reactjs">React Js
+                  <input type="checkbox" class="form-check-input me-2" id="reactjs" value="react" name="check">React Js
                   {{ end }}
                 </label>
               </div>
               <div class="col-6 d-flex flex-column gap-1">
                 <label class="form-check-label" for="js">
                   {{ if $.T3 }}
-                  <input type="checkbox" class="form-check-input me-2" id="js" value="js" name="js" checked>Javascript
+                  <input type="checkbox" class="form-check-input me-2" id="js" value="js" name="check" checked>Javascript
                   {{ else }}
-                  <input type="checkbox" class="form-check-input me-2" id="js" value="js" name="js">Javascript
+                  <input type="checkbox" class="form-check-input me-2" id="js" value="js" name="check">Javascript
                   {{ end }}
                 </label>
                 <label class="form-check-label" for="html">
                   {{ if $.T4 }}
-                  <input type="checkbox" class="form-check-input me-2" id="html" value="html" name="html" checked>HTML 5
+                  <input type="checkbox" class="form-check-input me-2" id="html" value="html5" name="check" checked>HTML 5
                   {{ else }}
-                  <input type="checkbox" class="form-check-input me-2" id="html" value="html" name="html">HTML 5
+                  <input type="checkbox" class="form-check-input me-2" id="html" value="html5" name="check">HTML 5
                   {{ end }}
                 </label>
               </div>
@@ -135,8 +135,8 @@
           <div class="d-flex justify-content-end">
             <button class="btn btn-black rounded-4 fw-bold ps-4 pe-4 pt-1 pb-1 mt-4">submit</button>
           </div>
-          {{ end }}
         </form>
+        {{ end }}
       </div>
     </div>
     <!-- end form contact -->

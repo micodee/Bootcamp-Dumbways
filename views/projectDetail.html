@@ -84,25 +84,25 @@
             <div class="mb-3">
               <h5 class="fw-semibold">Technologies</h5>
               <div class="d-flex align-items-center gap-xl-2 flex-wrap">
-                {{ if .Projects.Tnode }}
+                {{ if $.T1 }}
                 <div class="col-4 me-xl-0 me-5 mb-xl-0 mb-2">
                   <i class="fa-brands fa-node me-2 fs-4"></i>
                   <span>Node Js</span>
                 </div>
                 {{ end }}
-                {{ if .Projects.Treact }}
+                {{ if $.T2 }}
                 <div class="col-4 me-xl-0 me-5 mb-xl-0 mb-2">
                   <i class="fa-brands fa-react me-2 fs-4"></i>
                   <span>React Js</span>
                 </div>
                 {{ end }}
-                {{ if .Projects.Tjs }}
+                {{ if $.T3 }}
                 <div class="col-4 me-xl-0 me-5 mb-xl-0 mb-2">
                   <i class="fa-brands fa-js me-2 fs-4"></i>
                   <span>Javascript</span>
                 </div>
                 {{ end }}
-                {{ if .Projects.Thtml }}
+                {{ if $.T4 }}
                 <div class="col-4 me-xl-0 me-5 mb-xl-0 mb-2">
                   <i class="fa-brands fa-html5 me-2 fs-4"></i>
                   <span>HTML 5</span>

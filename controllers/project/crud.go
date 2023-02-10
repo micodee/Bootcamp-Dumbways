@@ -196,60 +196,19 @@ func UpdatePost(w http.ResponseWriter, r *http.Request) {
 	content := r.PostForm.Get(("desc"))
 	SD := r.PostForm.Get("sdate")
 	ED := r.PostForm.Get("edate")
-	node := false
-	react := false
-	js := false
-	hateml := false
+	tech := r.Form["check"]
 
-	formatLayout := "2006-01-02"
-	sDate, _ := time.Parse(formatLayout, SD)
+	sDate, _ := time.Parse("2006-01-02", SD)
 	sDateFormat := sDate.Format("02 January 2006")
-	eDate, _ := time.Parse(formatLayout, ED)
+	eDate, _ := time.Parse("2006-01-02", ED)
 	eDateFormat := eDate.Format("02 January 2006")
 
-	
-	durasi := eDate.Sub(sDate)
-	// days := int(duration.Hours() / 24)
-	// months := int(days / 30)
-	// years := int(months / 12)
-	var distance string
-	if durasi.Hours()/24 < 7 {
-		distance = strconv.FormatFloat(durasi.Hours()/24, 'f', 0, 64) + " Days"
-	} else if durasi.Hours()/24/7 < 4 {
-		distance = strconv.FormatFloat(durasi.Hours()/24/7, 'f', 0, 64) + " Weeks"
-	} else if durasi.Hours()/24/30 < 12 {
-		distance = strconv.FormatFloat(durasi.Hours()/24/30, 'f', 0, 64) + " Months"
-	} else {
-		distance = strconv.FormatFloat(durasi.Hours()/24/30/12, 'f', 0, 64) + " Years"
-	}
-
-	// if checked
-	if r.FormValue("nodejs") != "" {
-		node = true
-	}
-	if r.FormValue("reactjs") != "" {
-		react = true
-	}
-	if r.FormValue("js") != "" {
-		js = true
-	}
-	if r.FormValue("html") != "" {
-		hateml = true
-	}
-
-	for i := range project {
-		update := &project[id]
-		if i == id {
-			(*update).Title = title
-			(*update).Sdate = sDateFormat
-			(*update).Edate = eDateFormat
-			(*update).Duration = distance
-			(*update).Content = content
-			(*update).Tnode = node
-			(*update).Treact = react
-			(*update).Tjs = js
-			(*update).Thtml = hateml
-		}
+	update := "UPDATE public.tb_projects SET project_name=$1, start_date=$2, end_date=$3, description=$4, technologies=$5 WHERE id=$6"
+	_, err = config.ConnDB.Exec(context.Background(), update, title, sDateFormat, eDateFormat, content, tech, id)
+	if err != nil {
+		w.WriteHeader(http.StatusInternalServerError)
+		w.Write([]byte("message : " + err.Error()))
+		return
 	}
 
 	http.Redirect(w, r, "/", http.StatusMovedPermanently)
@@ -311,15 +270,35 @@ func Detail(w http.ResponseWriter, r *http.Request) {
 		distance = strconv.FormatFloat(duration.Hours()/24/30/12, 'f', 0, 64) + " Years"
 	}
 
+	// technology
+	node, react, js, html := false, false, false, false
+	tech := projectDetail.Technologies
+	for _ , i := range tech {
+		switch i {
+		case "node":
+			node = true
+		case "react":
+			react = true
+		case "js":
+			js = true
+		case "html5":
+			html = true
+		}
+	}
+
 	var data = map[string]interface{}{
 		"title" : "Detail Project",
-		"isLogin" : true,
+		"isLogin" : false,
 	}
 
 	resp := map[string]interface{}{
 		"Data" : data,
 		"Projects" : projectDetail,
 		"Duration" : distance,
+		"T1" : node,
+		"T2" : react,
+		"T3" : js,
+		"T4" : html,
 	}
 
 	w.WriteHeader(http.StatusOK)
