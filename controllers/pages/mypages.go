@@ -47,13 +47,15 @@ func Contact(w http.ResponseWriter, r *http.Request) {
 }
 
 
-func Login(w http.ResponseWriter, r *http.Request) {
+func FormLogin(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-type", "text/html; charset-utf-8")
 
 	var tmpl, err = template.ParseFiles("./views/pageLogin.html")
 	// error handling
 	if err != nil {
-		panic(err)
+		w.WriteHeader(http.StatusInternalServerError)
+		w.Write([]byte("Message : " + err.Error()))
+		return
 	}
 
 	var data = map[string]interface{}{
@@ -67,13 +69,15 @@ func Login(w http.ResponseWriter, r *http.Request) {
 
 
 
-func Register(w http.ResponseWriter, r *http.Request) {
+func FormRegister(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-type", "text/html; charset-utf-8")
 
 	var tmpl, err = template.ParseFiles("./views/pageRegister.html")
 	// error handling
 	if err != nil {
-		panic(err)
+		w.WriteHeader(http.StatusInternalServerError)
+		w.Write([]byte("Message : " + err.Error()))
+		return
 	}
 
 	var data = map[string]interface{}{

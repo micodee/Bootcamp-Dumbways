@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"net/http"
 	"projek/config"
+	"projek/controllers/auth"
 	"projek/controllers/pages"
 	"projek/controllers/project"
 
@@ -14,7 +15,7 @@ func main() {
 	// menyiapkan routingan
 	router := mux.NewRouter()
 
-	// create connection database.go
+	// connection database.go
 	config.ConnectDB()
 
 	// create static folder for public
@@ -24,6 +25,8 @@ func main() {
 	router.HandleFunc("/", project.Home).Methods("GET")
 	router.HandleFunc("/addProject", pages.AddProject).Methods("GET")
 	router.HandleFunc("/contact", pages.Contact).Methods("GET")
+	router.HandleFunc("/register", pages.FormRegister).Methods("GET")
+	router.HandleFunc("/login", pages.FormLogin).Methods("GET")
 
 // routing actions
 	router.HandleFunc("/add", project.Add).Methods("POST")
@@ -33,14 +36,11 @@ func main() {
 	router.HandleFunc("/detail/{id}", project.Detail).Methods("GET")
 
 	// routing auth and session
-	router.HandleFunc("/register", pages.Register).Methods("GET")
-	router.HandleFunc("/login", pages.Login).Methods("GET")
+	router.HandleFunc("/register", auth.Register).Methods("POST")
+	router.HandleFunc("/login", auth.Login).Methods("POST")
 
-	// create port
+	// create server port
 	port := "5000"
 	fmt.Println("server running on port", port)
 	http.ListenAndServe("localhost:"+port, router)
-
-	// fmt.Println("Server Running on port 5000")
-	// http.ListenAndServe("localhost:5000", router)
 }

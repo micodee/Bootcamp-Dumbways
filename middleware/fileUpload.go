@@ -19,6 +19,8 @@ func UploadFile(next http.HandlerFunc) http.HandlerFunc {
 		defer fileNames.Close()
 		fmt.Printf("Upload File : %+v\n", fileHandler.Filename)
 		
+
+	// untuk mengubah nama image
 		tempFile, err := ioutil.TempFile("uploads", "image-*"+fileHandler.Filename)
 		if err != nil {
 			fmt.Println(err)
@@ -32,6 +34,8 @@ func UploadFile(next http.HandlerFunc) http.HandlerFunc {
 		if err != nil {
 			fmt.Println(err)
 		}
+
+		// create imager temprorary file
 		tempFile.Write(fileBytes)
 
 		data := tempFile.Name()

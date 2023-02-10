@@ -5,4 +5,4 @@ Cookies => adalah kecil file yang disimpan di komputer kamu ketika kamu mengunju
 tentang kamu, seperti preferensi dan aktivitasmu di situs tersebut. Ini membantu situs web untuk memberikan kamu pengalaman yang lebih baik.
 
 
-go get -u github.com/gorilla/
+go get -u github.com/gorilla/sessions
