@@ -40,6 +40,7 @@ func main() {
 	// routing auth and session
 	router.HandleFunc("/register", auth.Register).Methods("POST")
 	router.HandleFunc("/login", auth.Login).Methods("POST")
+	router.HandleFunc("/logout", auth.Logout).Methods("GET")
 
 	// create server port
 	port := "5000"

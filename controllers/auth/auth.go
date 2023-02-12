@@ -62,11 +62,24 @@ func Login(w http.ResponseWriter, r *http.Request) {
 	var store = sessions.NewCookieStore([]byte("SESSION_ID"))
 	session, _ := store.Get(r, "SESSION_ID")
 
-	session.Values["isLogin"] = true
+	session.Values["IsLogin"] = true
 	session.Values["Name"] = user.Name
+	session.Values["Id"] = user.Id
 	session.Options.MaxAge = 10800
 
 	session.AddFlash("Login Success", "message")
+	session.Save(r, w)
+
+	http.Redirect(w, r, "/", http.StatusMovedPermanently)
+}
+
+func Logout(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Cache-Control", "no-chace, no-store, must-revalidate")
+
+	var store = sessions.NewCookieStore([]byte("SESSION_ID"))
+	session, _ := store.Get(r, "SESSION_ID")
+
+	session.Options.MaxAge = -1
 	session.Save(r, w)
 
 	http.Redirect(w, r, "/", http.StatusMovedPermanently)

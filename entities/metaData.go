@@ -3,10 +3,12 @@ package entities
 type MetaData struct {
 	Title     string
 	IsLogin   bool
-	Username  string
+	UserName  string
 	FlashData string
 }
 
-var Data = MetaData{
-	Title: "Personal Web",
+var Data = map[string]interface{}{
+	"Title" : "Home | Marcel",
+	"IsLogin" : true,
+	"UserName" : "Tommy",
 }

@@ -29,7 +29,7 @@
       integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD"
       crossorigin="anonymous"
     />
-    <title>{{.Data.title}}</title>
+    <title>{{.Data.Title}}</title>
   </head>
   <body class="bg-bodyset">
     <!-- component navbar -->
@@ -61,7 +61,7 @@
                 >Home</a
               >
             </li>
-            {{ if .Data.isLOGIN }}
+            {{ if .Data.IsLogin }}
             <li class="nav-item">
               <a class="nav-link fw-semibold" href="/addProject"
                 >Add Project</a
@@ -71,8 +71,8 @@
             {{ end }}
           </ul>
           
-          {{ if .Data.isLOGIN }}
-          <a href="#" class="fw-semibold me-4">Hi, Marcel</a>
+          {{ if .Data.IsLogin }}
+          <a href="#" class="fw-semibold me-4">Hi, {{ .Data.UserName }}</a>
           <a href="/logout" class="fw-semibold me-5">Logout</a>
           {{ else }}
           <a href="/register" class="fw-semibold me-4">Register</a>
@@ -153,7 +153,7 @@
                   {{ end }}
                 </div>
                 
-                {{ if $.Data.isLOGIN }}
+                {{ if $.Data.IsLogin }}
                 <div class="d-flex justify-content-evenly mt-4 gap-1">
                   <a href="/update/{{$data.Id}}" class="btn-black text-center rounded-2 fw-semibold p-1" style="width: 100%;">update</a>
                   <a href="/delete/{{$data.Id}}" class="btn-black text-center rounded-2 fw-semibold p-1" style="width: 100%;" onclick="return confirm('You are going to delete {{ $data.Title }} Project?')">delete</a>

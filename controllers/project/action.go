@@ -12,6 +12,7 @@ import (
 	"time"
 
 	"github.com/gorilla/mux"
+	"github.com/gorilla/sessions"
 )
 
 func Home(w http.ResponseWriter, r *http.Request) {
@@ -22,14 +23,25 @@ func Home(w http.ResponseWriter, r *http.Request) {
 		w.Write([]byte("message : " + err.Error()))
 		return
 	}
+
+	var store = sessions.NewCookieStore([]byte("SESSION_ID"))
+	session, _ := store.Get(r, "SESSION_ID")
+
+	if session.Values["IsLogin"] != true {
+		entities.Data["IsLogin"] = false
+	} else {
+		entities.Data["IsLogin"] = session.Values["IsLogin"].(bool)
+		entities.Data["UserName"] = session.Values["Name"].(string)
+	}
+
 	
-	readDT := "SELECT id, project_name, description, start_date, end_date, technologies, image FROM public.tb_projects;"
+	readDT := "SELECT tb_projects.id, project_name, start_date, end_date, description, image, technologies, tb_users.name as user FROM tb_projects LEFT JOIN tb_users ON tb_projects.user_id = tb_users.id ORDER BY id DESC"
 	rows, _ := config.ConnDB.Query(context.Background(), readDT)
 					
 	var result []entities.Project
  for rows.Next() {
 	var each = entities.Project{}
- var err = rows.Scan(&each.Id, &each.Title, &each.Content, &each.Sdate, &each.Edate, &each.Technologies, &each.Image)
+ var err = rows.Scan(&each.Id, &each.Title, &each.Sdate, &each.Edate, &each.Content, &each.Image, &each.Technologies, &each.User)
 	if err != nil {
 		fmt.Println(err.Error())
 		return
@@ -53,14 +65,10 @@ func Home(w http.ResponseWriter, r *http.Request) {
 
 		result = append(result, each)
 	}
-		
-		var data = map[string]interface{}{
-			"title" : "Home | Marcel",
-			"isLOGIN" : false,
-		}
+
 		
 		resp := map[string]interface{}{
-			"Data" : data,
+			"Data" : entities.Data,
 			"Projects" : result,
 		}
 		
@@ -79,8 +87,14 @@ func Add(w http.ResponseWriter, r *http.Request) {
 	SD := r.PostForm.Get("sdate")
 	ED := r.PostForm.Get("edate")
 	tech := r.Form["check"]
+
 	image := r.Context().Value("dataFile")
 	img := image.(string)
+
+	var store = sessions.NewCookieStore([]byte("SESSION_ID"))
+	session, _ := store.Get(r, "SESSION_ID")
+	userID := session.Values["Id"].(int)
+
 
 	// convert date ke string
 	sDate, _ := time.Parse("2006-01-02", SD)
@@ -88,8 +102,8 @@ func Add(w http.ResponseWriter, r *http.Request) {
 	eDate, _ := time.Parse("2006-01-02", ED)
 	eDateFormat := eDate.Format("02 January 2006")
 
-	addID := "INSERT INTO tb_projects(project_name, start_date, end_date, description, image, technologies) VALUES ($1, $2, $3, $4, $5, $6)"
-	_, err = config.ConnDB.Exec(context.Background(), addID, title, sDateFormat, eDateFormat, content, img, tech)
+	addID := "INSERT INTO tb_projects(project_name, start_date, end_date, description, image, technologies, user_id) VALUES ($1, $2, $3, $4, $5, $6, $7)"
+	_, err = config.ConnDB.Exec(context.Background(), addID, title, sDateFormat, eDateFormat, content, img, tech, userID)
 	if err != nil {
 		w.WriteHeader(http.StatusInternalServerError)
 		w.Write([]byte("message : " + err.Error()))
