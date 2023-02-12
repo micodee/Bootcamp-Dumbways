@@ -26,16 +26,17 @@ func Home(w http.ResponseWriter, r *http.Request) {
 
 	var store = sessions.NewCookieStore([]byte("SESSION_ID"))
 	session, _ := store.Get(r, "SESSION_ID")
-
+	
+	var readDT string
 	if session.Values["IsLogin"] != true {
 		entities.Data["IsLogin"] = false
-	} else {
-		entities.Data["IsLogin"] = session.Values["IsLogin"].(bool)
-		entities.Data["UserName"] = session.Values["Name"].(string)
+		readDT = "SELECT id, project_name, start_date, end_date, description, image, technologies, user_id FROM public.tb_projects ORDER BY id DESC;"
+		} else {
+			entities.Data["IsLogin"] = session.Values["IsLogin"].(bool)
+			entities.Data["UserName"] = session.Values["Name"].(string)
+		readDT = "SELECT tb_projects.id, project_name, start_date, end_date, description, image, technologies, tb_users.name as user FROM tb_projects LEFT JOIN tb_users ON tb_projects.user_id = tb_users.id WHERE tb_users.name='" + entities.Data["UserName"].(string) + "' ORDER BY id DESC"
 	}
 
-	
-	readDT := "SELECT tb_projects.id, project_name, start_date, end_date, description, image, technologies, tb_users.name as user FROM tb_projects LEFT JOIN tb_users ON tb_projects.user_id = tb_users.id ORDER BY id DESC"
 	rows, _ := config.ConnDB.Query(context.Background(), readDT)
 					
 	var result []entities.Project

@@ -10,5 +10,6 @@ type MetaData struct {
 var Data = map[string]interface{}{
 	"Title" : "Home | Marcel",
 	"IsLogin" : true,
+	"Id" : 1,
 	"UserName" : "Tommy",
 }
