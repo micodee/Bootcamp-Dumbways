@@ -20,7 +20,7 @@
       integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD"
       crossorigin="anonymous"
     />
-    <title>{{ .Data.title }}</title>
+    <title>{{ .Data.Title }}</title>
   </head>
   <body class="bg-bodyset">
     <!-- component navbar -->
@@ -46,7 +46,7 @@
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
             <li class="nav-item me-4">
               <a
-                class="nav-link fw-bold"
+                class="nav-link fw-bold active"
                 aria-current="page"
                 href="/"
                 >Home</a
@@ -59,6 +59,13 @@
             </li>
           </ul>
 
+          {{ if $.Data.IsLogin }}
+          <a href="#" class="fw-semibold me-4">Hi, {{ .Data.UserName }}</a>
+          <a href="/logout" class="fw-semibold me-5">Logout</a>
+          {{ else }}
+          <a href="/register" class="fw-semibold me-4">Register</a>
+          <a href="/login" class="fw-semibold me-5">Login</a>
+          {{ end }}
           <div class="contact">
             <a href="/contact" class="btn-black fw-semibold rounded-2 ps-3 pe-3 pt-1 pb-1">Contact Me</a>
           </div>

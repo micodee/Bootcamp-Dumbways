@@ -16,6 +16,8 @@ func UploadFile(next http.HandlerFunc) http.HandlerFunc {
 			json.NewEncoder(w).Encode("Error Retrieving the file")
 			return
 		}
+		
+		// menunda eksekusi suatu kode hingga setelah suatu fungsi selesai dipanggil dan akan dieksekusi secara berurutan
 		defer fileNames.Close()
 		fmt.Printf("Upload File : %+v\n", fileHandler.Filename)
 		

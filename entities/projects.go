@@ -10,5 +10,4 @@ type Project struct {
 	Technologies []string
 	Image string
 	User string
-	IsLogin bool
 }

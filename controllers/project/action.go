@@ -174,13 +174,8 @@ func Update(w http.ResponseWriter, r *http.Request) {
 
 	result := []entities.Project{getID}
 
-	var data = map[string]interface{}{
-		"title" : "Edit Project",
-		"isLogin" : true,
-	}
-
 	resp := map[string]interface{}{
-		"Data" : data,
+		"Data" : entities.Data,
 		"GetUpdate" : result,
 		"Sdate" : SD,
 		"Edate" : ED,
@@ -299,13 +294,9 @@ func Detail(w http.ResponseWriter, r *http.Request) {
 		}
 	}
 
-	var data = map[string]interface{}{
-		"title" : "Detail Project",
-		"isLogin" : false,
-	}
 
 	resp := map[string]interface{}{
-		"Data" : data,
+		"Data" : entities.Data,
 		"Projects" : detail,
 		"Duration" : distance,
 		"T1" : node,
