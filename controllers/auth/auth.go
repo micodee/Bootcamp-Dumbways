@@ -67,7 +67,9 @@ func Login(w http.ResponseWriter, r *http.Request) {
 	session.Values["Id"] = user.Id
 	session.Options.MaxAge = 10800
 
+	// flash login
 	session.AddFlash("Login Success", "message")
+
 	session.Save(r, w)
 
 	http.Redirect(w, r, "/", http.StatusMovedPermanently)
@@ -80,6 +82,9 @@ func Logout(w http.ResponseWriter, r *http.Request) {
 	session, _ := store.Get(r, "SESSION_ID")
 
 	session.Options.MaxAge = -1
+
+	session.AddFlash("You have successfully logged out", "message")
+
 	session.Save(r, w)
 
 	http.Redirect(w, r, "/", http.StatusMovedPermanently)

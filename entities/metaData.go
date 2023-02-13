@@ -12,4 +12,5 @@ var Data = map[string]interface{}{
 	"IsLogin" : true,
 	"Id" : 1,
 	"UserName" : "Tommy",
+	"FlashData" : "",
 }

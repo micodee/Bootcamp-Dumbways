@@ -52,11 +52,13 @@
                 >Home</a
               >
             </li>
+            {{ if .Data.IsLogin }}
             <li class="nav-item">
               <a class="nav-link fw-semibold" href="/addProject"
                 >Add Project</a
               >
             </li>
+            {{ end }}
           </ul>
           
           <a href="/register" class="fw-bold me-4 active">Register</a>

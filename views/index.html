@@ -67,7 +67,6 @@
                 >Add Project</a
               >
             </li>
-            {{ else }}
             {{ end }}
           </ul>
           
@@ -85,6 +84,12 @@
       </div>
     </nav>
     <!-- end navbar -->
+
+    {{if $.Data.FlashData}}
+    <div class="alert alert-success text-center fixed-top" style="margin-top: 3.5rem !important;" role="alert">
+      {{$.Data.FlashData}}
+    </div>
+    {{ end }}
 
     <!-- profile  -->
     <div class="d-flex justify-content-center align-items-center mt-5 pb-5">

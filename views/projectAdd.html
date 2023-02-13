@@ -59,8 +59,13 @@
             </li>
           </ul>
           
+          {{ if $.IsLogin }}
+          <a href="#" class="fw-semibold me-4">Hi, {{ .UserName }}</a>
+          <a href="/logout" class="fw-semibold me-5">Logout</a>
+          {{ else }}
           <a href="/register" class="fw-semibold me-4">Register</a>
           <a href="/login" class="fw-semibold me-5">Login</a>
+          {{ end }}
           <div class="contact">
             <a href="/contact" class="btn-black fw-semibold rounded-2 ps-3 pe-3 pt-1 pb-1">Contact Me</a>
           </div>

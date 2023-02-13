@@ -9,6 +9,7 @@ import (
 	"projek/config"
 	"projek/entities"
 	"strconv"
+	"strings"
 	"time"
 
 	"github.com/gorilla/mux"
@@ -24,9 +25,22 @@ func Home(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
+	// session get SESSION_ID
 	var store = sessions.NewCookieStore([]byte("SESSION_ID"))
 	session, _ := store.Get(r, "SESSION_ID")
+
+	// flash
+	fm := session.Flashes("message")
+	var flashes []string
+	if len(fm) > 0 {
+		session.Save(r, w)
+		for _, fl := range fm {
+			flashes = append(flashes, fl.(string))
+		} 
+	}
+	entities.Data["FlashData"] = strings.Join(flashes, "")
 	
+	// conditional is login
 	var readDT string
 	if session.Values["IsLogin"] != true {
 		entities.Data["IsLogin"] = false
@@ -36,9 +50,9 @@ func Home(w http.ResponseWriter, r *http.Request) {
 			entities.Data["UserName"] = session.Values["Name"].(string)
 		readDT = "SELECT tb_projects.id, project_name, start_date, end_date, description, image, technologies, tb_users.name as user FROM tb_projects LEFT JOIN tb_users ON tb_projects.user_id = tb_users.id WHERE tb_users.name='" + entities.Data["UserName"].(string) + "' ORDER BY id DESC"
 	}
-
 	rows, _ := config.ConnDB.Query(context.Background(), readDT)
 					
+
 	var result []entities.Project
  for rows.Next() {
 	var each = entities.Project{}
